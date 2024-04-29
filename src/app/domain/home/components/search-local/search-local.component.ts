@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomValidators } from '../../../../validators/customValidators';
@@ -11,6 +11,7 @@ import { CustomValidators } from '../../../../validators/customValidators';
 export class SearchLocalComponent {
 
   form!: FormGroup;
+  isMobile: boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router) {
   }
 

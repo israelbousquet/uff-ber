@@ -21,7 +21,8 @@
       </div>
       <div class="search">
         <button (click)="search()">
-          <mat-icon>search</mat-icon>
+          {{ isMobile ? 'Procurar' : 'Procurar'}}
+          <mat-icon *ngIf="!isMobile">search</mat-icon>
         </button>
       </div>
     </div>

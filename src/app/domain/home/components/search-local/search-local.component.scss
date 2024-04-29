@@ -10,25 +10,41 @@
       &.inputs-container {
         .autocomplet-fields {
           display: flex;
+          flex-wrap: wrap;
           gap: 10px;
         }
 
         .date-search {
           display: flex;
+          flex-wrap: wrap;
           gap: 10px;
         }
       }
 
       .search {
         button {
-          height: 55px;
-          width: 55px;
-          border-radius: 50%;
-          background: var(--blue-primary-color);
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 15px;
+          flex: 1;
+          width: 100%;
+          // min-width: 300px;
+          height: auto;
+          padding: 15px 20px;
+          border-radius: 28px;
+          font-weight: 600;
+          color: var(--primary-color);
+          background-color: var(--blue-primary-color);
+          font-size: .95rem;
 
           mat-icon {
             color: var(--primary-color);
           }
+        }
+
+        @media (max-width: 520px) {
+          flex: 1;
         }
       }
     }
