@@ -1,0 +1,29 @@
+<div class="search-container">
+  <form [formGroup]="form" class="inputs-container">
+    <div class="autocomplet-fields">
+      <div class="input">
+        <app-place-autocomplete [label]="'Saindo de'" [control]="getControl('origin')"></app-place-autocomplete>
+      </div>
+      <div class="input">
+        <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destiny')"></app-place-autocomplete>
+      </div>
+    </div>
+    <div class="date-search">
+      <div class="input">
+        <mat-form-field appearance="outline">
+          <mat-label>Hoje</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="date">
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+          </mat-datepicker>
+        </mat-form-field>
+
+      </div>
+      <div class="search">
+        <button (click)="search()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

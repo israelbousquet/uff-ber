@@ -1,0 +1,87 @@
+:host {
+  .card {
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border-radius: 14px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .route-item {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      .route {
+        font-size: .8rem;
+        color: var(--blue-primary-color);
+      }
+    }
+
+    .perfil {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .img-perfil {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--bg-color-dark);
+        overflow: hidden;
+        padding: 5px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .detail {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        p {
+          font-size: .95rem;
+          font-weight: 600;
+        }
+
+        mat-icon {
+          color: var(--bg-color-dark-2);
+        }
+      }
+    }
+
+    .details-race {
+      display: flex;
+      flex-direction: flex;
+      gap: 10px;
+
+      .chip {
+        display: flex;
+        gap: 5px;
+        padding: 5px 10px;
+        background: var(--tertiary-color);
+        border-radius: 14px;
+        font-weight: 600;
+        font-size: .9rem;
+      }
+    }
+
+    .passengers {
+      .passenger-list {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        .passenger {
+          padding: 5px 10px;
+          border: 1px solid var(--bg-color-dark-2);
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+}

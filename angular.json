@@ -37,7 +37,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/@ngneat/hot-toast/src/styles/styles.css",
+              "src/styles.scss",
+              "src/scss/variables.scss",
+              "src/scss/global.scss",
+              "src/scss/animations.scss"
             ],
             "scripts": []
           },

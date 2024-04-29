@@ -1,0 +1,74 @@
+<div class="card showUp">
+  <!-- <div class="route-item">
+    <p class="route">Origem: </p>
+    <p>{{ raceData.race?.route?.origin }}</p>
+  </div>
+  <div class="divider"></div>
+  <div class="route-item">
+    <p class="route">Destino: </p>
+    <p>{{ raceData.race?.route?.origin }}</p>
+  </div> -->
+  <div class="perfil">
+    <div class="img-perfil" [matMenuTriggerFor]="menuDriver">
+      <img src="../../../../../assets/imgs/perfil-empty.png">
+    </div>
+    <div class="detail">
+      <p>{{ raceData.driver.name }}</p>
+      <div class="avaliation">
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+        <mat-icon>star</mat-icon>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <!-- <div class="passengers">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Passageiros da Viagem
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="passenger-list">
+          <div class="passenger" *ngFor="let passenger of raceData.race.passengers">
+            {{ passenger.name }}
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div> -->
+
+  <div class="details-race">
+    <div class="chip">
+      <p>Distância: </p>
+      <p>{{ raceData.race?.distance }}</p>
+    </div>
+    <div class="chip">
+      <p>Duração: </p>
+      <p>{{ raceData.race?.duration }}</p>
+    </div>
+  </div>
+</div>
+
+<mat-menu #menuDriver="matMenu" xPosition="before">
+  <button mat-menu-item>
+    <mat-icon class="blue-primary">login</mat-icon>
+    <span>Login</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon class="blue-primary">person</mat-icon>
+    <span>Cadastre-se</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon class="blue-primary">settings</mat-icon>
+    <span>Conta</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon class="blue-primary">logout</mat-icon>
+    <span>Sair</span>
+  </button>
+</mat-menu>

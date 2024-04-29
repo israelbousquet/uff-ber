@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+// @use '@angular/material' as mat;
+
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+@import "./scss/variables.scss";
+@import "./scss/global.scss";
+@import "./scss/reset.scss";
+@import "./scss/material-global.scss";
+
+$custom-primary-palette: (
+  50: #e9f9ff,
+  100: #dcf5ff,
+  200: #bbecff,
+  300: #87d2f0,
+  400: #69d3fd,
+  500: #4ac4f5,
+  600: #00aff5,
+  700: #0892c9,
+  800: #0479a7,
+  900: #035575,
+  A100: #ffffff,
+  A200: #e4e5f1,
+  A400: #d1d4ee,
+  A700: #b2b6e6,
+  contrast: (
+    50: #002e41,
+    100: #002e41,
+    200: #002e41,
+    300: #002e41,
+    400: #002e41,
+    500: #002e41,
+    600: #002e41,
+    700: #002e41,
+    800: #002e41,
+    900: #002e41,
+    A100: #002e41,
+    A200: #002e41,
+    A400: #002e41,
+    A700: #002e41,
+  ),
+);
+
+$custom-primary: mat.define-palette($custom-primary-palette);
+$custom-accent: mat.define-palette($custom-primary-palette);
+$custom-warn: mat.define-palette(mat.$red-palette);
+
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn,
+  )
+));
+
+@include mat.all-component-themes($custom-theme);
+
+.mat-icon {
+  font-family: "Material Icons Outlined";
+}

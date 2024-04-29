@@ -1,12 +1,11 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  selector: 'app-content',
+  templateUrl: './content.component.html',
+  styleUrl: './content.component.scss'
 })
-export class AppComponent {
+export class ContentComponent implements OnInit {
   innerWidth!: number;
   isLargeScreen!: boolean;
 
@@ -35,19 +34,18 @@ export class AppComponent {
         {
           name: 'Procurar',
           icon: 'search',
-          routerLink: '/search',
+          routerLink: '/lista',
         },
         {
           name: 'Oferecer carona',
           icon: 'add_circle',
-          routerLink: '/oferecer-carona',
         },
       ]
     } else {
       links = [
         {
           icon: 'search',
-          routerLink: '/search',
+          routerLink: '/lista',
         },
       ];
     }

@@ -1,0 +1,51 @@
+<div class="login-container">
+  <div class="call">
+    <div class="call-img fade">
+      <img src="../../../../../assets/imgs/login-img.png">
+    </div>
+  </div>
+  <div class="account-container">
+    <div class="account">
+      <h1 class="login-title showBottom">Login</h1>
+
+      <form [formGroup]="resourceForm" class="showUp">
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Nome de usuário</mat-label>
+            <input matInput formControlName="userName" />
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-error [errorValidators]="returnControl('userName')"> </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error [errorValidators]="returnControl('email')"> </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'"/>
+            <button style="margin-right: 10px; margin-top: 2px;" type="text" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon class="blue-primary">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error [errorValidators]="returnControl('password')"></mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="actions-form">
+          <button class="primary-button full-width" type="submit" [disabled]="!resourceForm.valid" (click)="onSubmit()">Entrar</button>
+
+        <div class="dont-have-account">
+          <p>Não tem uma conta? <a>Inscrever-se</a></p>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

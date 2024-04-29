@@ -1,0 +1,94 @@
+@use "@ngneat/hot-toast/src/styles/styles.scss";
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+
+* {
+  // font-family: "Nunito Sans", sans-serif;
+  // font-family: "gt-eesti", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Inter, sans-serif;
+
+  padding: 0;
+  margin: 0;
+  color: var(--blue-primary-color-dark);
+  // font-weight: 500;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue-primary-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+//barra total
+*::-webkit-scrollbar-track {
+  background: var(--bar-bg);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--blue-primary-color);
+  border-radius: 20px;
+}
+
+button {
+  border: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+mat-icon {
+  &.blue-primary {
+    color: var(--blue-primary-color) !important;
+  }
+}
+
+.input-box {
+  margin-bottom: 10px;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  &.primary-button {
+    padding: 15px;
+    border-radius: 28px;
+    background-color: var(--blue-primary-color);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  &[disabled] {
+    background-color: var(--bg-color-dark);
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+a {
+  color: var(--blue-primary-color);
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--tertiary-color-dark);
+}
+
+.tx-w {
+  color: #fff;
+}

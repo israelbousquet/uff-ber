@@ -1,0 +1,106 @@
+:host {
+  header {
+    background-color: var(--primary-color);
+    box-shadow: 1px 12px 45px -17px rgba(10,16,74,0.13);
+    -webkit-box-shadow: 1px 12px 45px -17px rgba(10,16,74,0.13);
+    -moz-box-shadow: 1px 12px 45px -17px rgba(10,16,74,0.13);
+    z-index: 3;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+
+    height: 70px;
+    display: flex;
+    align-items: center;
+
+    .menu {
+      padding: 10px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .logo {
+        cursor: pointer;
+        h1 {
+          color: var(--blue-primary-color);
+          font-size: 2rem;
+          font-family: "Alfa Slab One", serif;
+          font-weight: 400;
+          letter-spacing: 2px;
+
+          &.mobile {
+            font-size: 1.5rem;
+          }
+        }
+      }
+      .items-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 20px;
+
+        .item {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          cursor: pointer;
+          padding: 8px 12px;
+          border-radius: 10px;
+          transition: background-color .2s ease-in-out;
+
+          &:hover {
+            background-color: var(--bg-color-dark);
+          }
+
+          mat-icon {
+            color: var(--blue-primary-color);
+            height: 32px;
+            width: 32px;
+            font-size: 32px;
+          }
+
+          span {
+            color: var(--blue-primary-color-dark);
+            font-size: .9rem;
+          }
+        }
+
+        .perfil {
+          display: flex;
+          align-items: center;
+
+          .img-perfil {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-color-dark);
+            overflow: hidden;
+            padding: 5px;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .detail {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .mat-menu {
+      mat-icon {
+        color: var(--blue-primary-color);
+      }
+    }
+  }
+
+  main {
+    margin-top: 70px;
+  }
+}

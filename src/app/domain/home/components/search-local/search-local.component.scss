@@ -1,0 +1,36 @@
+:host {
+  .search-container {
+    form {
+      width: 100%;
+
+      .input {
+        flex: 1
+      }
+
+      &.inputs-container {
+        .autocomplet-fields {
+          display: flex;
+          gap: 10px;
+        }
+
+        .date-search {
+          display: flex;
+          gap: 10px;
+        }
+      }
+
+      .search {
+        button {
+          height: 55px;
+          width: 55px;
+          border-radius: 50%;
+          background: var(--blue-primary-color);
+
+          mat-icon {
+            color: var(--primary-color);
+          }
+        }
+      }
+    }
+  }
+}
