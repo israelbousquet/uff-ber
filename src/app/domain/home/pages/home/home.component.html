@@ -4,9 +4,59 @@
   </div>
 
   <div class="container-search showBottom">
-    <app-search-local></app-search-local>
+    <div class="search-container">
+      <form [formGroup]="form" class="inputs-container">
+        <div class="autocomplet-fields">
+          <div class="input">
+            <app-place-autocomplete [label]="'Saindo de'" [control]="getControl('origin')"></app-place-autocomplete>
+          </div>
+          <div class="input">
+            <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destiny')"></app-place-autocomplete>
+          </div>
+          <div class="input">
+            <app-place-autocomplete [label]="'Parada'" [control]="getControl('waypoint')"></app-place-autocomplete>
+          </div>
+        </div>
+        <div class="date-search">
+          <div class="input">
+            <mat-form-field appearance="outline">
+              <mat-label>Hoje</mat-label>
+              <input matInput [matDatepicker]="datepicker" formControlName="date">
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker>
+              </mat-datepicker>
+            </mat-form-field>
+
+          </div>
+          <div class="search">
+            <button (click)="search()">
+              {{ isMobile ? 'Procurar' : 'Procurar'}}
+              <mat-icon *ngIf="!isMobile">search</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<div class="map-container">
+  <div *ngIf="leg" class="details-travel">
+    <div class="distance">
+      <p>Distância: {{leg.distance?.text}}</p>
+    </div>
+    <div class="duration">
+      <p>Duração: {{leg.duration?.text}}</p>
+    </div>
   </div>
 
   <div class="maps">
+    <!-- <div *ngIf="isLoading" class="loading">
+      <div class="spinner"></div>
+    </div> -->
+
+    <app-map-display [from]="form.value.origin" [to]="form.value.destiny" [waypoint]="form.value.waypoint" (loading)="isLoading = $event" (destinationResult)="destinationChange($event)"></app-map-display>
   </div>
-</section>
+
+</div>

@@ -8,17 +8,21 @@ import { HomeComponent } from './pages/home/home.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { SearchLocalComponent } from './components/search-local/search-local.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MapDisplayComponent } from './components/map-display/map-display.component';
+import { GoogleMap } from '@angular/google-maps';
+import { MapDirectionsRenderer } from '@angular/google-maps';
+import { MapMarker } from '@angular/google-maps';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     HomeComponent,
     PlaceAutocompleteComponent,
-    SearchLocalComponent,
+    MapDisplayComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,11 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    GoogleMap,
+    MapDirectionsRenderer,
+    MapMarker,
+    MatProgressSpinnerModule
   ]
 })
 export class HomeModule { }
