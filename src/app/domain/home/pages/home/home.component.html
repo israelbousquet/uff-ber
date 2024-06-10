@@ -11,10 +11,21 @@
             <app-place-autocomplete [label]="'Saindo de'" [control]="getControl('origin')"></app-place-autocomplete>
           </div>
           <div class="input">
-            <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destiny')"></app-place-autocomplete>
+            <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destination')"></app-place-autocomplete>
           </div>
-          <div class="input">
+          <!-- <div class="input">
             <app-place-autocomplete [label]="'Parada'" [control]="getControl('waypoint')"></app-place-autocomplete>
+          </div> -->
+
+          <button matTooltip="Adicionar parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="addWaypoint()"><mat-icon>add</mat-icon></button>
+        </div>
+        <div class="paradas">
+          <div formArrayName="waypoints">
+            <div *ngFor="let waypoint of waypoints.controls; let i = index" [formGroupName]="i" class="input parada">
+              <app-place-autocomplete [label]="'Parada ' + (i + 1)" [control]="waypoint"></app-place-autocomplete>
+
+              <button matTooltip="Remover parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="removeWaypoint(i)"><mat-icon>remove</mat-icon></button>
+            </div>
           </div>
         </div>
         <div class="date-search">
@@ -56,7 +67,7 @@
       <div class="spinner"></div>
     </div> -->
 
-    <app-map-display [from]="form.value.origin" [to]="form.value.destiny" [waypoint]="form.value.waypoint" (loading)="isLoading = $event" (destinationResult)="destinationChange($event)"></app-map-display>
+    <app-map-display [from]="form.value.origin" [to]="form.value.destination" [waypointsInput]="form.value.waypoints" (loading)="isLoading = $event" (routeChange)="destinationChange($event)"></app-map-display>
   </div>
 
 </div>

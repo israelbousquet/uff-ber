@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PlaceSearchResult } from '../../components/place-autocomplete/place-autocomplete.component';
 
@@ -26,10 +26,16 @@ export class HomeComponent {
   buildForm() {
     this.form = this.formBuilder.group({
       origin: [null, Validators.required],
-      destiny: [null, [Validators.required]],
-      waypoint: [null, Validators.required],
+      destination: [null, [Validators.required]],
+      waypoints: this.formBuilder.array([]),
       date: [null, [Validators.required]]
     })
+  }
+
+  createWaypoint(): FormGroup {
+    return this.formBuilder.group({
+      address: [null, Validators.required]
+    });
   }
 
   getControl(campo: string) {
@@ -44,7 +50,29 @@ export class HomeComponent {
     if (result) {
       this.route = result.routes[0];
       this.leg = this.route.legs[0];
-      console.log(this.route)
+
+      this.openGoogleMapsRoute();
     }
+  }
+
+  openGoogleMapsRoute() {
+    const origin = this.form.value.origin.address;
+    const destination = this.form.value.destination.address;
+
+    const urlMaps = `https://www.google.com/maps/dir/?api=1&destination=${destination}&origin=${origin}&travelmode=driving`;
+    window.open(urlMaps, '_blank')
+  }
+
+  get waypoints(): FormArray {
+    return this.form.get('waypoints') as FormArray;
+  }
+
+  addWaypoint() {
+    const control = this.formBuilder.control(null, Validators.required);
+    this.waypoints.push(control);
+  }
+
+  removeWaypoint(index: number) {
+    this.waypoints.removeAt(index);
   }
 }

@@ -16,7 +16,7 @@ import { MapDisplayComponent } from './components/map-display/map-display.compon
 import { GoogleMap } from '@angular/google-maps';
 import { MapDirectionsRenderer } from '@angular/google-maps';
 import { MapMarker } from '@angular/google-maps';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     GoogleMap,
     MapDirectionsRenderer,
     MapMarker,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ]
 })
 export class HomeModule { }

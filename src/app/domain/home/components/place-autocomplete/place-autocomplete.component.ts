@@ -8,7 +8,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 export interface PlaceSearchResult {
   address: string;
@@ -27,7 +27,7 @@ export class PlaceAutocompleteComponent implements OnInit {
   inputField!: ElementRef;
   @Input() placeholder: string = '';
   @Input() label: string = '';
-  @Input() control!: FormControl;
+  @Input() control!: FormControl | AbstractControl;
 
   @Output() placeChanged = new EventEmitter<PlaceSearchResult>();
 
@@ -44,7 +44,6 @@ export class PlaceAutocompleteComponent implements OnInit {
       this.control.setValue(value);
     }
   }
-
 
   ngAfterViewInit(): void {
     setTimeout(() => {

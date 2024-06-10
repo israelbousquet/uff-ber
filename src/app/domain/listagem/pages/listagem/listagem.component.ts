@@ -30,7 +30,7 @@ export class ListagemComponent implements OnInit {
           ],
           route: {
             origin: 'Terminal Rodoviário de Alcãntara',
-            destiny: 'UFF Praia Vermelha'
+            destination: 'UFF Praia Vermelha'
           }
         },
         driver: {
@@ -58,7 +58,7 @@ export class ListagemComponent implements OnInit {
           ],
           route: {
             origin: 'Terminal Rodoviário de Alcãntara',
-            destiny: 'UFF Praia Vermelha'
+            destination: 'UFF Praia Vermelha'
           }
         },
         driver: {
@@ -86,7 +86,7 @@ export class ListagemComponent implements OnInit {
           ],
           route: {
             origin: 'Terminal Rodoviário de Alcãntara',
-            destiny: 'UFF Praia Vermelha'
+            destination: 'UFF Praia Vermelha'
           }
         },
         driver: {

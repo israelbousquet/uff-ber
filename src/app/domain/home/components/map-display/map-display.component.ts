@@ -21,7 +21,7 @@ export class MapDisplayComponent implements OnInit {
 
   @Input() from: PlaceSearchResult | undefined;
   @Input() to: PlaceSearchResult | undefined;
-  @Input() waypoint: PlaceSearchResult | undefined;
+  @Input() waypointsInput: PlaceSearchResult[] | undefined;
 
   @Output() loading = new EventEmitter<boolean>(false);
 
@@ -32,7 +32,7 @@ export class MapDisplayComponent implements OnInit {
     google.maps.DirectionsResult | undefined
   >(undefined);
 
-  @Output() destinationResult =
+  @Output() routeChange =
     new EventEmitter<google.maps.DirectionsResult>();
 
   markerPositions: google.maps.LatLng[] = [];
@@ -52,13 +52,15 @@ export class MapDisplayComponent implements OnInit {
   ngOnChanges() {
     const fromLocation = this.from?.location;
     const toLocation = this.to?.location;
-    const waypoint:google.maps.DirectionsWaypoint = {
-      stopover: true,
-      location: this.waypoint?.location,
-    };
-    if (this.waypoint) {
-      this.waypoints = [waypoint]
-    }
+
+    this.waypoints = this.waypointsInput!.map((way: any) => {
+      const waypoint:google.maps.DirectionsWaypoint = {
+        stopover: true,
+        location: way?.location,
+      };
+
+      return waypoint;
+    })
 
     let directionDirty: boolean = false;
 
@@ -98,14 +100,12 @@ export class MapDisplayComponent implements OnInit {
       travelMode: google.maps.TravelMode.DRIVING,
       waypoints: this.waypoints,
     };
-    console.log(request)
 
     this.directionsService
       .route(request)
       .pipe(map((res) => res.result))
       .subscribe((result) => {
         if (result) {
-          console.log(result)
           this.defineDirections(result);
           this.markerPositions = [];
           this.loading.emit(false);
@@ -115,6 +115,6 @@ export class MapDisplayComponent implements OnInit {
 
   defineDirections(result: google.maps.DirectionsResult | undefined) {
     this.directionsResult$.next(result);
-    this.destinationResult.emit(result);
+    this.routeChange.emit(result);
   }
 }

@@ -34,7 +34,18 @@
       width: 100%;
 
       .input {
-        flex: 1
+        flex: 1;
+
+        &.parada {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+
+          app-place-autocomplete {
+            flex: 1;
+          }
+        }
       }
 
       &.inputs-container {
@@ -42,6 +53,7 @@
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
+          align-items: center;
         }
 
         .date-search {
@@ -113,6 +125,25 @@
         animation: spin 1s linear infinite; /* Animação de rotação */
       }
 
+    }
+  }
+
+  button {
+    &.icon-action {
+      height: 30px;
+      width: 30px;
+      background: #eee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -15px;
+      transition: .25s ease;
+
+      &:hover {
+        background-color: var(--blue-primary-color-dark);
+        color: var(--primary-color);
+      }
     }
   }
 
