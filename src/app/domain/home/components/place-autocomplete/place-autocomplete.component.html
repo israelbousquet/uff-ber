@@ -1,4 +1,4 @@
 <mat-form-field appearance="outline">
   <mat-label>{{ label }}</mat-label>
-  <input #inputField matInput type="text" [placeholder]="placeholder">
+  <input #inputField matInput type="text" [placeholder]="placeholder" (keydown)="updateControl($event)">
 </mat-form-field>
