@@ -6,10 +6,10 @@ import { Observable, catchError, map, pluck, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseResourceService {
+export class BaseResourceService <T> {
   constructor(private http: HttpClient) { }
 
-  customAction(method: string, path: string, resource: any, query?: string, columns?: Array<string>): Observable<any> {
+  customAction(method: string, path: string, resource: any, query?: string, columns?: Array<string>): Observable<T> {
     let url = "";
     if (query) url = `${environment.baseUrl}/${path}?${query}`;
     else url = `${environment.baseUrl}/${path}`;
@@ -29,6 +29,20 @@ export class BaseResourceService {
       map((retorno: any) => retorno),
       catchError(this.handleError)
     );
+  }
+
+  create(resource: T, custom_url?: string): Observable<T> {
+    let url = "";
+    if (custom_url) url = `${environment.baseUrl}/${custom_url}`;
+    else url = environment.baseUrl;
+    return this.http.post(url, resource).pipe(map(res => res), catchError(this.handleError));
+  }
+
+  update(resource: any, key: string, custom_url?: string): Observable<T> {
+    let url = "";
+    if (custom_url) url = `${environment.baseUrl}/${custom_url}`;
+    else url = `${environment.baseUrl}?${key}=${resource[key]}`;
+    return this.http.put(url, resource).pipe(map(res => res), catchError(this.handleError));
   }
 
   protected handleError(error: any): Observable<any> {

@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   resourceForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService<Array<any>>) {
   }
 
   ngOnInit() {
