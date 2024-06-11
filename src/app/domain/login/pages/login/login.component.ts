@@ -1,3 +1,4 @@
+import { BaseResourceService } from './../../../../shared/services/base-resource.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormGroupDirective, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,11 +13,14 @@ export class LoginComponent implements OnInit {
   hide = true;
 
   resourceForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService) {
   }
 
   ngOnInit() {
     this.buildForm();
+    this.serviceHttp.customAction("GET", "carros/marcas", null).subscribe(res => {
+      if (res) console.log(res)
+    })
   }
 
   buildForm() {

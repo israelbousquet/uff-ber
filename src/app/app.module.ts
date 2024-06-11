@@ -19,6 +19,8 @@ import { SharedModule } from './shared/shared.module';
 import { ContentComponent } from './layouts/content/content/content.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [AppComponent, ContentComponent],
   imports: [
@@ -33,6 +35,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     MatSidenavModule,
     MatTooltipModule,
     MatMenuModule,
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync(),
