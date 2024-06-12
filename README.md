@@ -7,12 +7,21 @@ Site simula um app de carona, com integração com Google Maps
 
 # Configuração Angular
 
+```
 npm install -g @angular/cli@latest
 npm install
+```
 
--- Startar projeto localmente: ng s -o
--- Buildar para dev: npm run build:dev
+## Startar projeto localmente
+```
+ng s -o
+```
+## Buildar para dev
+```
+npm run build:dev
+```
 
 # Configuração navegador sem CORS Policy
-
+```
 chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
+```
