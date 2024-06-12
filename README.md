@@ -22,6 +22,7 @@ npm run build:dev
 ```
 
 # Configuração navegador sem CORS Policy
+## Colar comando no Windows + R
 ```
 chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
 ```
