@@ -16,8 +16,15 @@
 .container {
   width: 85%;
   margin: 0 auto;
+
+  &.content {
+    padding: 40px 0px;
+  }
 }
 
+.h-100 {
+  height: calc(100vh - 70px);
+}
 /* Works on Firefox */
 * {
   scrollbar-width: thin;

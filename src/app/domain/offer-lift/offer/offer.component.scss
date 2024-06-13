@@ -1,0 +1,122 @@
+:host {
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    z-index: 2;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--blue-primary-color);
+    }
+  }
+
+  .container-search {
+    width: 60%;
+    margin: 0 auto;
+
+    @media (max-width: 950px) {
+      width: 70%;
+    }
+
+    @media (max-width: 700px) {
+      width: 80%;
+    }
+  }
+
+  .search-container {
+    form {
+      width: 100%;
+
+      .input {
+        flex: 1;
+
+        &.parada {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+
+          app-place-autocomplete {
+            flex: 1;
+          }
+        }
+      }
+
+      &.inputs-container {
+        .autocomplet-fields {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          align-items: center;
+        }
+
+        .date-search {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+      }
+
+      .search {
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 5px;
+          flex: 1;
+          width: 100%;
+          // min-width: 300px;
+          height: auto;
+          padding: 15px 20px;
+          border-radius: 28px;
+          font-weight: 600;
+          color: var(--primary-color);
+          background-color: var(--blue-primary-color);
+          font-size: .95rem;
+
+          mat-icon {
+            color: var(--primary-color);
+          }
+        }
+
+        @media (max-width: 520px) {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  button {
+    &.icon-action {
+      height: 30px;
+      width: 30px;
+      background: #eee;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -15px;
+      transition: .25s ease;
+
+      &:hover {
+        background-color: var(--blue-primary-color-dark);
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}

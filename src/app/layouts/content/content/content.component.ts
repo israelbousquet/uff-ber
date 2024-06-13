@@ -39,6 +39,7 @@ export class ContentComponent implements OnInit {
         {
           name: 'Oferecer carona',
           icon: 'add_circle',
+          routerLink: 'offer-lift',
         },
       ]
     } else {
@@ -49,6 +50,7 @@ export class ContentComponent implements OnInit {
         },
         {
           icon: 'add_circle',
+          routerLink: 'offer-lift',
         }
       ];
     }

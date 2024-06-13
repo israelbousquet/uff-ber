@@ -1,0 +1,53 @@
+<section class="h-100">
+  <div class="container showUp">
+    <h1>Crie sua carona aqui</h1>
+  </div>
+
+  <div class="container-search showBottom">
+    <div class="search-container">
+      <form [formGroup]="form" class="inputs-container">
+        <div class="autocomplet-fields">
+          <div class="input">
+            <app-place-autocomplete [label]="'Saindo de'" [control]="getControl('origin')"></app-place-autocomplete>
+          </div>
+          <div class="input">
+            <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destination')"></app-place-autocomplete>
+          </div>
+          <!-- <div class="input">
+            <app-place-autocomplete [label]="'Parada'" [control]="getControl('waypoint')"></app-place-autocomplete>
+          </div> -->
+
+          <button matTooltip="Adicionar parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="addWaypoint()"><mat-icon>add</mat-icon></button>
+        </div>
+        <div class="paradas">
+          <div formArrayName="waypoints">
+            <div *ngFor="let waypoint of waypoints.controls; let i = index" [formGroupName]="i" class="input parada">
+              <app-place-autocomplete [label]="'Parada ' + (i + 1)" [control]="waypoint"></app-place-autocomplete>
+
+              <button matTooltip="Remover parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="removeWaypoint(i)"><mat-icon>remove</mat-icon></button>
+            </div>
+          </div>
+        </div>
+        <div class="date-search">
+          <div class="input">
+            <mat-form-field appearance="outline">
+              <mat-label>Hoje</mat-label>
+              <input matInput [matDatepicker]="datepicker" formControlName="date">
+              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker>
+              </mat-datepicker>
+            </mat-form-field>
+
+          </div>
+          <div class="search">
+            <button (click)="search()">
+              {{ isMobile ? 'Criar' : 'Criar'}}
+              <mat-icon *ngIf="!isMobile">add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>

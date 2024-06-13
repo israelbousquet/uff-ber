@@ -1,0 +1,33 @@
+<section class="container content">
+  <h1>Carona</h1>
+
+  <div class="locations">
+    <div class="local-container">
+      <p>Origem</p>
+      <div class="local">{{ locationFrom.name }}</div>
+
+      <div class="pin">
+        <mat-icon>location_on</mat-icon>
+      </div>
+    </div>
+
+    <div class="direction">
+      <button>
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+    <div class="local-container">
+      <p>Destino</p>
+      <div class="local">{{ locationTo.name }}</div>
+
+      <div class="pin">
+        <mat-icon>location_on</mat-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="maps">
+    <app-map-display [from]="locationFrom" [to]="locationTo" [waypointsInput]="[]" (loading)="isLoading = $event"></app-map-display>
+  </div>
+</section>

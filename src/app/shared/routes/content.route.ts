@@ -9,6 +9,11 @@ export const content: Routes = [
   {
     path: 'lifts',
     loadChildren: () =>
-      import('../../domain/listagem/listagem.module').then((m) => m.ListagemModule),
+      import('../../domain/lifts/listagem.module').then((m) => m.ListagemModule),
+  },
+  {
+    path: 'offer-lift',
+    loadChildren: () =>
+      import('../../domain/offer-lift/offer-lift.module').then((m) => m.OfferLiftModule),
   },
 ]
