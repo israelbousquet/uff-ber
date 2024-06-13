@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PlaceSearchResult } from '../../components/place-autocomplete/place-autocomplete.component';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
 
 @Component({
