@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PlaceSearchResult } from '../../components/place-autocomplete/place-autocomplete.component';
+import { BaseResourceService } from '../../../../shared/services/base-resource.service';
 
 @Component({
   selector: 'app-home',
@@ -15,15 +16,18 @@ export class HomeComponent {
 
   route: google.maps.DirectionsRoute | undefined;
   leg: google.maps.DirectionsLeg | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService<Array<any>>) {
   }
 
   ngOnInit() {
     this.buildForm();
     this.form.get('date')?.setValue(new Date());
+    this.serviceHttp.customAction("GET", "comments", null).subscribe(res => {
+      if (res) console.log(res)
+    })
   }
 
-  buildForm() {
+  buildForm() { 
     this.form = this.formBuilder.group({
       origin: [null, Validators.required],
       destination: [null, [Validators.required]],

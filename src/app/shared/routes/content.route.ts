@@ -7,7 +7,7 @@ export const content: Routes = [
       import('../../domain/home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'lista',
+    path: 'lifts',
     loadChildren: () =>
       import('../../domain/listagem/listagem.module').then((m) => m.ListagemModule),
   },

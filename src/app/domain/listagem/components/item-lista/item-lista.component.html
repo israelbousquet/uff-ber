@@ -8,7 +8,7 @@
     <p class="route">Destino: </p>
     <p>{{ raceData.race?.route?.origin }}</p>
   </div> -->
-  <div class="perfil">
+  <!-- <div class="perfil">
     <div class="img-perfil" [matMenuTriggerFor]="menuDriver">
       <img src="../../../../../assets/imgs/perfil-empty.png">
     </div>
@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="divider"></div>
+  <div class="divider"></div> -->
 
   <!-- <div class="passengers">
     <mat-accordion>
@@ -42,14 +42,31 @@
     </mat-accordion>
   </div> -->
 
+  <div class="locations">
+    <div class="local-container">
+      <p>Origem</p>
+      <div class="local">
+        <mat-icon inline="true">location_on</mat-icon> {{ lift.start_location }}
+      </div>
+    </div>
+    <div class="local-container">
+      <p>Destino</p>
+      <div class="local">
+        <mat-icon inline="true">pin_drop</mat-icon> {{ lift.end_location }}
+      </div>
+    </div>
+  </div>
+
   <div class="details-race">
     <div class="chip">
-      <p>Distância: </p>
-      <p>{{ raceData.race?.distance }}</p>
+      <p>Criado em: </p>
+      <p>{{ lift.created_at | date : 'dd/MM/yyyy' }}</p>
     </div>
-    <div class="chip">
-      <p>Duração: </p>
-      <p>{{ raceData.race?.duration }}</p>
+
+    <div class="actions">
+      <button (click)="goLift()" type="button" class="button-lift">
+        <mat-icon inline="true">visibility</mat-icon> Visualizar corrida
+      </button>
     </div>
   </div>
 </div>

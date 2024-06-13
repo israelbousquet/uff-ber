@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListagemComponent } from './pages/listagem/listagem.component';
+import { LiftListComponent } from './pages/lift-list/lift-list.component';
+import { LiftDetailComponent } from './pages/lift-detail/lift-detail.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListagemComponent
+    component: LiftListComponent
+  },
+  {
+    path: ':id',
+    component: LiftDetailComponent,
   }
 ];
 

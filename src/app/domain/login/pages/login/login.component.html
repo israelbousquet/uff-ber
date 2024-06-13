@@ -11,19 +11,10 @@
       <form [formGroup]="resourceForm" class="showUp">
         <div class="input-box">
           <mat-form-field appearance="outline">
-            <mat-label>Nome de usuário</mat-label>
-            <input matInput formControlName="userName" />
+            <mat-label>IdUFF</mat-label>
+            <input matInput formControlName="iduff" maxlength="11"/>
             <mat-icon matSuffix>person</mat-icon>
-            <mat-error [errorValidators]="returnControl('userName')"> </mat-error>
-          </mat-form-field>
-        </div>
-
-        <div class="input-box">
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" />
-            <mat-icon matSuffix>mail</mat-icon>
-            <mat-error [errorValidators]="returnControl('email')"> </mat-error>
+            <mat-error [errorValidators]="returnControl('iduff')"> </mat-error>
           </mat-form-field>
         </div>
 

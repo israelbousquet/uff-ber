@@ -6,7 +6,8 @@
     background-color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
+    align-items: flex-start;
 
     .route-item {
       display: flex;
@@ -15,6 +16,48 @@
       .route {
         font-size: .8rem;
         color: var(--blue-primary-color);
+      }
+    }
+
+    .locations {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .local-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        p {
+          font-size: 13px;
+        }
+
+        .local {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px;
+          border-radius: 10px;
+          background: var(--tertiary-color-light);
+          font-weight: 600;
+        }
+      }
+
+    }
+
+    .button-lift {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: var(--blue-primary-color-dark);
+      color: var(--primary-color);
+      padding: 8px 12px;
+      border-radius: 10px;
+      transition: background-color .2s ease;
+
+      &:hover {
+        background-color: var(--blue-primary-color-dark-light);
       }
     }
 
@@ -61,11 +104,14 @@
       .chip {
         display: flex;
         gap: 5px;
+        align-items: center;
         padding: 5px 10px;
-        background: var(--tertiary-color);
-        border-radius: 14px;
+        background: var(--blue-primary-color);
+        border-radius: 10px;
         font-weight: 600;
         font-size: .9rem;
+        color: var(--primary-color) !important;
+        cursor: default;
       }
     }
 

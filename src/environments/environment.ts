@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // baseUrl: "http://localhost:3333/teste",
-  baseUrl: "https://parallelum.com.br/fipe/api/v1",
+  baseUrl: "http://localhost:3000",
+  // baseUrl: "https://parallelum.com.br/fipe/api/v1",
 };
 /*
  * For easier debugging in development mode, you can import the following file

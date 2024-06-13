@@ -34,7 +34,7 @@ export class ContentComponent implements OnInit {
         {
           name: 'Procurar',
           icon: 'search',
-          routerLink: '/lista',
+          routerLink: '/lifts',
         },
         {
           name: 'Oferecer carona',
@@ -45,8 +45,11 @@ export class ContentComponent implements OnInit {
       links = [
         {
           icon: 'search',
-          routerLink: '/lista',
+          routerLink: '/lifts',
         },
+        {
+          icon: 'add_circle',
+        }
       ];
     }
 
