@@ -13,6 +13,10 @@
   animation: showUp 0.3s forwards;
 }
 
+.showUpDelay {
+  animation: showUp 0.6s forwards;
+}
+
 @keyframes showBottom {
   0% {
     opacity: 0;
@@ -26,6 +30,10 @@
 
 .showBottom {
   animation: showBottom 0.3s forwards;
+}
+
+.showBottomDelay {
+  animation: showBottom 0.6s forwards;
 }
 
 @keyframes showRight {
@@ -43,6 +51,10 @@
   animation: showRight 0.3s forwards;
 }
 
+.showRightDelay {
+  animation: showRight 0.6s forwards;
+}
+
 @keyframes showLeft {
   0% {
     opacity: 0;
@@ -56,6 +68,10 @@
 
 .showLeft {
   animation: showLeft 0.3s forwards;
+}
+
+.showLeftDelay {
+  animation: showLeft 0.6s forwards;
 }
 
 @keyframes slideLeft {

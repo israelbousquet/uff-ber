@@ -93,7 +93,11 @@ a {
 .divider {
   width: 100%;
   height: 1px;
-  background: var(--tertiary-color-dark);
+  background-color: var(--tertiary-color-dark);
+
+  &.light {
+    background-color: var(--tertiary-color-dark-2);
+  }
 }
 
 .tx-w {

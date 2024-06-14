@@ -1,13 +1,17 @@
 :host {
   .card {
-    padding: 20px;
-    box-shadow: var(--shadow);
-    border-radius: 14px;
-    background-color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     align-items: flex-start;
+
+    padding: 20px;
+    border-radius: 14px;
+    background-color: #fff;
+    box-shadow: 1px 5px 59px -29px rgba(52,125,153,0.44);
+    -webkit-box-shadow: 1px 5px 59px -29px rgba(52,125,153,0.44);
+    -moz-box-shadow: 1px 5px 59px -29px rgba(52,125,153,0.44);
+    // box-shadow: var(--shadow);
 
     .route-item {
       display: flex;
@@ -21,44 +25,39 @@
 
     .locations {
       display: flex;
-      flex-direction: column;
       gap: 15px;
+      width: 100%;
 
       .local-container {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 5px;
 
+        padding: 24px;
+        border-radius: 10px;
+        background: var(--tertiary-color);
+
+        font-weight: 600;
+        position: relative;
+        min-width: 150px;
+        width: 50%;
+
         p {
-          font-size: 13px;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 700;
+          color: var(--bg-color-dark-2);
         }
 
-        .local {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 8px;
-          border-radius: 10px;
-          background: var(--tertiary-color-light);
-          font-weight: 600;
+        .pin {
+          position: absolute;
+          top: -10px;
         }
+
       }
 
-    }
-
-    .button-lift {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      background-color: var(--blue-primary-color-dark);
-      color: var(--primary-color);
-      padding: 8px 12px;
-      border-radius: 10px;
-      transition: background-color .2s ease;
-
-      &:hover {
-        background-color: var(--blue-primary-color-dark-light);
-      }
     }
 
     .perfil {
@@ -96,22 +95,42 @@
       }
     }
 
-    .details-race {
+    .actions {
       display: flex;
-      flex-direction: flex;
-      gap: 10px;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 15px;
+      width: 100%;
 
       .chip {
         display: flex;
-        gap: 5px;
         align-items: center;
-        padding: 5px 10px;
-        background: var(--blue-primary-color);
         border-radius: 10px;
+        gap: 5px;
+
         font-weight: 600;
         font-size: .9rem;
-        color: var(--primary-color) !important;
+        color: var(--tertiary-color-dark-3) !important;
         cursor: default;
+      }
+
+      .button-lift {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        background-color: var(--blue-primary-color-dark);
+        color: var(--primary-color);
+
+        padding: 8px 12px;
+        border-radius: 10px;
+        transition: background-color .2s ease;
+
+        font-size: 15px;
+  
+        &:hover {
+          background-color: var(--blue-primary-color-dark-light);
+        }
       }
     }
 
