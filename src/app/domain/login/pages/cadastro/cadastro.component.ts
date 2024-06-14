@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
 import { ToastService } from '../../../../shared/services/toast-service.service';
 import { CustomValidators } from '../../../../validators/customValidators';
+import { UserCreated } from '../../../../shared/interfaces/global-interfaces';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,7 +19,7 @@ export class CadastroComponent {
   constructor(
     private formBuilder: FormBuilder, 
     private router: Router, 
-    public serviceHttp: BaseResourceService<Array<any>>,
+    public serviceHttp: BaseResourceService<UserCreated>,
     private toast: ToastService
   ) {
   }
@@ -40,7 +41,7 @@ export class CadastroComponent {
     const body = { user: { ...this.resourceForm.value }};
 
     this.serviceHttp.customAction("POST", "users", body).subscribe({
-      next: res => {
+      next: (res: UserCreated) => {
         if (res) {
           this.router.navigate(['/auth/login']);
           this.toast.showToastSucess("Cadastro realizado com sucesso")

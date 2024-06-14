@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormGroupDirective, Validators, FormBuilder } f
 import { Router } from '@angular/router';
 import { CustomValidators } from '../../../../validators/customValidators';
 import { ToastService } from '../../../../shared/services/toast-service.service';
-import { UserCreated } from '../../../../shared/interfaces/global-interfaces';
+import { User, UserCreated } from '../../../../shared/interfaces/global-interfaces';
 import { LocalService } from '../../../../shared/services/local.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     public router: Router, 
-    public serviceHttp: BaseResourceService<UserCreated>,
+    public serviceHttp: BaseResourceService<User>,
     private toast: ToastService,
     public localService: LocalService
   ) {
@@ -27,9 +27,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
-    // this.serviceHttp.customAction("GET", "lifts", null).subscribe(res => {
-    //   if (res) console.log(res)
-    // })
   }
 
   buildForm() {
@@ -44,7 +41,7 @@ export class LoginComponent implements OnInit {
     const body = { login: { ...this.resourceForm.value }};
 
     this.serviceHttp.customAction("POST", "logins", body).subscribe({
-      next: (res: UserCreated) => {
+      next: (res: User) => {
         if (res) {
           this.router.navigate(['/lifts']);
           this.toast.showWelcome('Seja bem-vindo!')

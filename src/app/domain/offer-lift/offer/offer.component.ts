@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
+import { LocalService } from '../../../shared/services/local.service';
 
 @Component({
   selector: 'app-offer',
@@ -15,24 +16,42 @@ export class OfferComponent {
 
   route: google.maps.DirectionsRoute | undefined;
   leg: google.maps.DirectionsLeg | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService<Array<any>>) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService<Array<any>>, public localService: LocalService) {
   }
 
   ngOnInit() {
     this.buildForm();
     this.form.get('date')?.setValue(new Date());
-    this.serviceHttp.customAction("GET", "comments", null).subscribe(res => {
-      if (res) console.log(res)
-    })
   }
 
   buildForm() { 
     this.form = this.formBuilder.group({
       origin: [null, Validators.required],
       destination: [null, [Validators.required]],
-      waypoints: this.formBuilder.array([]),
       date: [null, [Validators.required]]
     })
+  }
+
+  get resourceLift(): any {
+    let body = {};
+
+    if (this.localService.hasUser ) {
+      if (this.localService.userIsDriver) {
+        body = {
+          driver_id: this.localService.user.driver_id,
+          start_location: JSON.stringify(this.form.value.origin),
+          end_location: JSON.stringify(this.form.value.destination),
+        }
+      } else {
+        body = {
+          passenger_id: this.localService.user.passenger_id,
+          pickup_location: JSON.stringify(this.form.value.origin),
+          dropoff_location: JSON.stringify(this.form.value.destination)
+        }
+      }
+    }
+
+    return body;
   }
 
   createWaypoint(): FormGroup {
@@ -46,7 +65,9 @@ export class OfferComponent {
   }
 
   search() {
-    console.log(this.form.value)
+    this.serviceHttp.customAction("POST", "lifts", { lift: this.resourceLift }).subscribe(res => {
+      if (res) console.log(res)
+    })
   }
 
   destinationChange(result: google.maps.DirectionsResult) {

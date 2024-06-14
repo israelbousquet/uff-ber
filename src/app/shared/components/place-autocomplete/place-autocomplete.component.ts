@@ -59,8 +59,6 @@ export class PlaceAutocompleteComponent implements OnInit {
             address: this.inputField.nativeElement.value,
             name: place?.name,
             location: place?.geometry?.location,
-            imageUrl: this.getPhotoUrl(place),
-            iconUrl: place?.icon,
           };
 
           this.control.setValue(result);

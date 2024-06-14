@@ -25,11 +25,10 @@ export class LocalService {
   }
 
   get hasUser(): boolean {
-    if (this.user && Object.keys(this.user).length > 0) return true
-    else return false;
+    return this.user && Object.keys(this.user).length > 0;
   }
 
-  userIsDriver(): boolean {
+  get userIsDriver(): boolean {
     const user: User = this.user;
     if (user.driver_id) return true;
     else return false;
