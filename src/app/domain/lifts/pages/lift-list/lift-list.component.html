@@ -4,7 +4,12 @@
   </div>
 
   <div class="container-grid">
-    <app-item-lista *ngFor="let lift of lifts" [lift]="lift"></app-item-lista>
+    <ng-container *ngIf="lifts$ | async as lifts; else loading">
+      <app-item-lista *ngFor="let lift of lifts" [lift]="lift"></app-item-lista>
+    </ng-container>
+    <ng-template #loading>
+      <p>Loading...</p>
+    </ng-template>
   </div>
 </section>
 

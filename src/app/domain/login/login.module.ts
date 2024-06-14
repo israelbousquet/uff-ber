@@ -9,10 +9,13 @@ import { LoginComponent } from './pages/login/login.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    CadastroComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     FormsModule,
     SharedModule,
+    MatCheckboxModule
   ]
 })
 export class LoginModule { }

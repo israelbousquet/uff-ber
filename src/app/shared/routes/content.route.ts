@@ -9,7 +9,7 @@ export const content: Routes = [
   {
     path: 'lifts',
     loadChildren: () =>
-      import('../../domain/lifts/listagem.module').then((m) => m.ListagemModule),
+      import('../../domain/lifts/lift.module').then((m) => m.LiftModule),
   },
   {
     path: 'offer-lift',

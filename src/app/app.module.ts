@@ -24,12 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, ContentComponent],
   imports: [
-    SharedModule,
+    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     GoogleMapsModule,
     MatIconModule,
     MatSidenavModule,

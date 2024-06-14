@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ListagemRoutingModule } from './listagem-routing.module';
+import { LiftRoutingModule } from './lift-routing.module';
 import { LiftListComponent } from './pages/lift-list/lift-list.component';
 import { ItemListaComponent } from './components/item-lista/item-lista.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ListagemRoutingModule,
+    LiftRoutingModule,
     MatIconModule,
     MatMenuModule,
     MatExpansionModule,
@@ -35,4 +35,4 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SharedModule
   ]
 })
-export class ListagemModule { }
+export class LiftModule { }

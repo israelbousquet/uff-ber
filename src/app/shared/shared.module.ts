@@ -14,7 +14,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { HomeRoutingModule } from '../domain/home/home-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,12 +24,6 @@ import { HomeRoutingModule } from '../domain/home/home-routing.module';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    HomeRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,

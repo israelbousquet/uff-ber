@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   resourceForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder, 
-    private router: Router, 
+    public router: Router, 
     public serviceHttp: BaseResourceService<Array<any>>,
     private toast: ToastService
   ) {
@@ -32,22 +32,31 @@ export class LoginComponent implements OnInit {
   buildForm() {
     this.resourceForm = this.formBuilder.group({
       iduff: ["14999474700", [Validators.required, Validators.minLength(11), Validators.maxLength(11), CustomValidators.validaCpf]],
-      password: ["Teste2000#", [Validators.required, Validators.minLength(8), CustomValidators.passwordValidator]]
+      password: ["Teste2000#", [Validators.required, Validators.minLength(8), CustomValidators.passwordValidator]],
+      driver: [false]
     })
   }
 
   onSubmit() {
-    this.router.navigate(['/lifts']);
+    const body = { login: { ...this.resourceForm.value }};
 
-    // this.serviceHttp.customAction("POST", "login", this.resourceForm.value).subscribe({
-    //   next: res => {
-    //     console.log(res);
-    //     this.router.navigate(['/lista']);
-    //   },
-    //   error: err => {
-    //     this.toast.showToastError("Login Inválido");
-    //   },
-    // })
+    this.serviceHttp.customAction("POST", "logins", body).subscribe({
+      next: res => {
+        console.log(res);
+        this.router.navigate(['/lifts']);
+      },
+      error: err => {
+        this.toast.showToastError("Login Inválido");
+      },
+    })
+  }
+
+  changeRole(event: any) {
+    if (event.checked) {
+      this.resourceForm.get("driver")?.setValue(true);
+    } else {
+      this.resourceForm.get("driver")?.setValue(false);
+    }
   }
 
   returnControl(campo: string) {
