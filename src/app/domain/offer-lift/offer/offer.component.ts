@@ -68,7 +68,7 @@ export class OfferComponent {
     this.serviceHttp.customAction("POST", "lifts", { lift: this.resourceLift }).subscribe({
       next: res => {
         if (res) {
-          console.log(res);
+          this.router.navigate(['/lifts'])
           this.toast.showToastSucess('Carona criada com sucesso!');
         }
       },
@@ -77,23 +77,6 @@ export class OfferComponent {
         throw(err);
       }
     })
-  }
-
-  destinationChange(result: google.maps.DirectionsResult) {
-    if (result) {
-      this.route = result.routes[0];
-      this.leg = this.route.legs[0];
-
-      this.openGoogleMapsRoute();
-    }
-  }
-
-  openGoogleMapsRoute() {
-    const origin = this.form.value.origin.address;
-    const destination = this.form.value.destination.address;
-
-    const urlMaps = `https://www.google.com/maps/dir/?api=1&destination=${destination}&origin=${origin}&travelmode=driving`;
-    window.open(urlMaps, '_blank')
   }
 
   // gets

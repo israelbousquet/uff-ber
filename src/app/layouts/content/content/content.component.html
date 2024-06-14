@@ -26,19 +26,19 @@
 </main>
 
 <mat-menu #menuUser="matMenu" xPosition="before">
-  <button mat-menu-item [routerLink]="'auth/login'">
+  <!-- <button mat-menu-item [routerLink]="'auth/login'" *ngIf="!localService.hasUser">
     <mat-icon class="blue-primary">login</mat-icon>
     <span>Login</span>
   </button>
   <button mat-menu-item [routerLink]="'auth/login'">
     <mat-icon class="blue-primary">person</mat-icon>
     <span>Cadastre-se</span>
-  </button>
+  </button> -->
   <button mat-menu-item>
     <mat-icon class="blue-primary">settings</mat-icon>
     <span>Conta</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item (click)="logout()">
     <mat-icon class="blue-primary">logout</mat-icon>
     <span>Sair</span>
   </button>

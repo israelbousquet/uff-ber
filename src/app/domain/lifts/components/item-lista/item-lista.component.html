@@ -42,6 +42,11 @@
     </mat-accordion>
   </div> -->
 
+  <div class="status-container">
+    <div class="flag" [style.background-color]="colorStatus"></div>
+    <p>{{ getStatus }}</p>
+  </div>
+
   <div class="locations">
     <div class="local-container">
       <p>Origem</p>

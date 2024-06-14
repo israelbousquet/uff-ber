@@ -57,14 +57,16 @@ export class MapDisplayComponent implements OnInit {
     const fromLocation = this.from?.location;
     const toLocation = this.to?.location;
 
-    this.waypoints = this.waypointsInput!.map((way: any) => {
-      const waypoint:google.maps.DirectionsWaypoint = {
-        stopover: true,
-        location: way?.location,
-      };
-
-      return waypoint;
-    })
+    if (this.waypointsInput) {
+      this.waypoints = this.waypointsInput!.map((way: any) => {
+        const waypoint:google.maps.DirectionsWaypoint = {
+          stopover: true,
+          location: way?.location,
+        };
+  
+        return waypoint;
+      })
+    }
 
     let directionDirty: boolean = false;
 

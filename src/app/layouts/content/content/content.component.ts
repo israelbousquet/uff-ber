@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { LocalService } from '../../../shared/services/local.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -11,7 +13,7 @@ export class ContentComponent implements OnInit {
 
   links: any[] = []
 
-  constructor() {}
+  constructor(public localService: LocalService, private router: Router) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
@@ -56,5 +58,10 @@ export class ContentComponent implements OnInit {
     }
 
     this.links = links;
+  }
+
+  logout() {
+    this.localService.remove("user");
+    this.router.navigate(['/auth/login'])
   }
 }

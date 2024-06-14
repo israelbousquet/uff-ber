@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   buildForm() {
     this.resourceForm = this.formBuilder.group({
-      iduff: ["14999474700", [Validators.required, Validators.minLength(11), Validators.maxLength(11), CustomValidators.validaCpf]],
+      iduff: [null, [Validators.required, Validators.minLength(11), Validators.maxLength(11), CustomValidators.validaCpf]],
       password: ["Teste2000#", [Validators.required, Validators.minLength(8), CustomValidators.passwordValidator]],
       driver: [false]
     })

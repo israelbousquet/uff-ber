@@ -13,18 +13,6 @@
           <div class="input">
             <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destination')"></app-place-autocomplete>
           </div>
-        </div>
-        <div class="date-search">
-          <div class="input">
-            <mat-form-field appearance="outline">
-              <mat-label>Hoje</mat-label>
-              <input matInput [matDatepicker]="datepicker" formControlName="date">
-              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-              <mat-datepicker #datepicker>
-              </mat-datepicker>
-            </mat-form-field>
-
-          </div>
           <div class="search">
             <button (click)="search()" [disabled]="createDisabled">
               {{ isMobile ? 'Criar' : 'Criar'}}
@@ -35,5 +23,12 @@
       </form>
     </div>
 
+    <div class="maps">
+      <!-- <div *ngIf="isLoading" class="loading">
+        <div class="spinner"></div>
+      </div> -->
+  
+      <app-map-display [from]="form.value.origin" [to]="form.value.destination"></app-map-display>
+    </div>
   </div>
 </section>

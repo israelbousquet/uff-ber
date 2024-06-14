@@ -20,6 +20,20 @@
     }
   }
 
+  .lifts-empty {
+    padding: 40px 0px;
+    text-align: center;
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .create-lift {
+      margin-top: 25px;
+    }
+  }
+
   h1 {
     text-align: center;
     font-size: 3rem;

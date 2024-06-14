@@ -5,6 +5,7 @@ import { LocalService } from '../../../../shared/services/local.service';
 import { Lift } from '../../../../shared/interfaces/global-interfaces';
 import { parseLocation } from '../../../../shared/helpers/filter-location.helper';
 import { ToastService } from '../../../../shared/services/toast-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lift-list',
@@ -17,7 +18,8 @@ export class LiftListComponent implements OnInit {
   constructor(
     private serviceHttp: BaseResourceService<Lift[]>, 
     public localService: LocalService,
-    public toast: ToastService
+    public toast: ToastService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -28,13 +30,18 @@ export class LiftListComponent implements OnInit {
             res.start_location = parseLocation(res.start_location);
             res.end_location = parseLocation(res.end_location);
           })
-
+          
           this.lifts = res;
+          this.lifts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
         }
       },
       error: err => {
         this.toast.showToastError("Houve um erro ao carregar a lista");
       }
     })
+  }
+
+  offerLift() {
+    this.router.navigate(['/offer-lift'])
   }
 }

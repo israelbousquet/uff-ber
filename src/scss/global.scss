@@ -75,6 +75,11 @@ button {
     color: white;
     font-weight: 600;
     font-size: 1rem;
+    transition: background-color .2s ease;
+
+    &:hover {
+      background-color: var(--blue-primary-color-light);
+    }
   }
 
   &[disabled] {
