@@ -9,7 +9,7 @@
           <mat-icon>location_on</mat-icon>
         </div>
 
-        <div class="local">{{ locationFrom.name }}</div>
+        <div class="local">{{ lift?.start_location?.name }}</div>
       </div>
 
       <div class="direction">
@@ -24,12 +24,12 @@
           <mat-icon>location_on</mat-icon>
         </div>
 
-        <div class="local">{{ locationTo.name }}</div>
+        <div class="local">{{ lift?.end_location?.name }}</div>
       </div>
     </div>
 
-    <div class="maps showUp">
-      <app-map-display [from]="locationFrom" [to]="locationTo" [waypointsInput]="[]" (loading)="isLoading = $event"></app-map-display>
+    <div class="maps showUp" *ngIf="lift">
+      <app-map-display [from]="lift.start_location" [to]="lift.end_location" [waypointsInput]="[]" (loading)="isLoading = $event"></app-map-display>
     </div>
   </div>
 </section>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
+import { Lift } from '../../../../shared/interfaces/global-interfaces';
+import { convertToLatLng, parseLocation } from '../../../../shared/helpers/filter-location.helper';
 
 @Component({
   selector: 'app-lift-detail',
@@ -8,27 +10,13 @@ import { BaseResourceService } from '../../../../shared/services/base-resource.s
   styleUrl: './lift-detail.component.scss'
 })
 export class LiftDetailComponent implements OnInit {
-  lift: any = {};
+  lift!: Lift;
   isLoading = false;
-
-  locationFrom = {
-    address: "São Gonçalo Shopping - Rodovia Niterói - Manilha - Boa Vista, São Gonçalo - RJ, Brasil",
-    name: "São Gonçalo Shopping",
-    location: new google.maps.LatLng(-22.8141147, -43.0704788),
-  }
-
-  locationTo = {
-    address: "UFF - Praia Vermelha Campus - Rua Passo da Pátria - São Domingos, Niterói - RJ, Brasil",
-    name: "Universidade Federal Fluminense - Campus Praia Vermelha",
-    location: new google.maps.LatLng(-22.9048625, -43.1316667),
-  }
   
-  constructor(private route: ActivatedRoute, private serviceHttp: BaseResourceService<any>) {}
+  constructor(private route: ActivatedRoute, private serviceHttp: BaseResourceService<Lift>) {}
 
   ngOnInit(): void {
     this.inicializeParams();
-    console.log(this.locationFrom)
-    console.log(this.locationTo)
   }
 
   inicializeParams() {
@@ -36,11 +24,16 @@ export class LiftDetailComponent implements OnInit {
       const id = params['id'];
 
       this.serviceHttp.customAction("GET", `lifts/${id}`, null).subscribe({
-        next: res => {
+        next: (res: Lift) => {
           if (res) {
+            res.start_location = parseLocation(res.start_location);
+            res.end_location = parseLocation(res.end_location);
+
+            res.start_location = convertToLatLng(res.start_location);
+            res.end_location = convertToLatLng(res.end_location);
+
             this.lift = res;
             this.loadAfterGet()
-            console.log(this.lift)
           }
         },
         error: err => {

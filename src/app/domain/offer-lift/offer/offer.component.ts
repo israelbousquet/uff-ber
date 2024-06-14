@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 import { LocalService } from '../../../shared/services/local.service';
+import { ToastService } from '../../../shared/services/toast-service.service';
 
 @Component({
   selector: 'app-offer',
@@ -12,12 +13,17 @@ import { LocalService } from '../../../shared/services/local.service';
 export class OfferComponent {
   form!: FormGroup;
   isMobile: boolean = false;
-  isLoading: boolean = false;
 
   route: google.maps.DirectionsRoute | undefined;
   leg: google.maps.DirectionsLeg | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService<Array<any>>, public localService: LocalService) {
-  }
+
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    public serviceHttp: BaseResourceService<Array<any>>, 
+    public localService: LocalService,
+    public toast: ToastService
+  ) {}
 
   ngOnInit() {
     this.buildForm();
@@ -54,19 +60,22 @@ export class OfferComponent {
     return body;
   }
 
-  createWaypoint(): FormGroup {
-    return this.formBuilder.group({
-      address: [null, Validators.required]
-    });
-  }
-
   getControl(campo: string) {
     return this.form.get(campo) as FormControl;
   }
 
   search() {
-    this.serviceHttp.customAction("POST", "lifts", { lift: this.resourceLift }).subscribe(res => {
-      if (res) console.log(res)
+    this.serviceHttp.customAction("POST", "lifts", { lift: this.resourceLift }).subscribe({
+      next: res => {
+        if (res) {
+          console.log(res);
+          this.toast.showToastSucess('Carona criada com sucesso!');
+        }
+      },
+      error: err => {
+        this.toast.showToastError('Ocorreu um erro ao tentar criar a carona.');
+        throw(err);
+      }
     })
   }
 
@@ -87,16 +96,25 @@ export class OfferComponent {
     window.open(urlMaps, '_blank')
   }
 
-  get waypoints(): FormArray {
-    return this.form.get('waypoints') as FormArray;
+  // gets
+  get createDisabled(): boolean {
+    const origin = this.form.value.origin;
+    const destination = this.form.value.destination;
+
+    if (this.isValid(origin) && this.isValid(destination)) {
+      return false;
+    }
+
+    return true;
   }
 
-  addWaypoint() {
-    const control = this.formBuilder.control(null, Validators.required);
-    this.waypoints.push(control);
+  isValid(value: any): boolean {
+    return typeof value === 'object' && value !== null;
   }
 
-  removeWaypoint(index: number) {
-    this.waypoints.removeAt(index);
+  createWaypoint(): FormGroup {
+    return this.formBuilder.group({
+      address: [null, Validators.required]
+    });
   }
 }

@@ -20,4 +20,21 @@ export interface Cadastro {
   cnh: string
 }
 
+export interface Lift {
+  id: number,
+  driver_id: number,
+  passenger_id: number,
+  status: string,
+  start_location: Location,
+  end_location: Location,
+  created_at: Date,
+  updated_at: Date
+}
+
+export interface Location {
+  address: string;
+  name: string;
+  location: any;
+}
+
 // 14000000000

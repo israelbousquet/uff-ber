@@ -13,11 +13,6 @@
           <div class="input">
             <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destination')"></app-place-autocomplete>
           </div>
-          <!-- <div class="input">
-            <app-place-autocomplete [label]="'Parada'" [control]="getControl('waypoint')"></app-place-autocomplete>
-          </div> -->
-
-          <button matTooltip="Adicionar parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="addWaypoint()"><mat-icon>add</mat-icon></button>
         </div>
         <div class="date-search">
           <div class="input">
@@ -31,7 +26,7 @@
 
           </div>
           <div class="search">
-            <button (click)="search()">
+            <button (click)="search()" [disabled]="createDisabled">
               {{ isMobile ? 'Criar' : 'Criar'}}
               <mat-icon *ngIf="!isMobile">add</mat-icon>
             </button>

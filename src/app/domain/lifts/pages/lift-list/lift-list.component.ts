@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { LocalService } from '../../../../shared/services/local.service';
+import { Lift } from '../../../../shared/interfaces/global-interfaces';
+import { parseLocation } from '../../../../shared/helpers/filter-location.helper';
+import { ToastService } from '../../../../shared/services/toast-service.service';
 
 @Component({
   selector: 'app-lift-list',
@@ -10,23 +13,28 @@ import { LocalService } from '../../../../shared/services/local.service';
 })
 export class LiftListComponent implements OnInit {
   lifts: any[] = [];
-  lifts$: Observable<Array<any>> = new Observable()
 
-  constructor(private serviceHttp: BaseResourceService<any>, public localService: LocalService) {}
+  constructor(
+    private serviceHttp: BaseResourceService<Lift[]>, 
+    public localService: LocalService,
+    public toast: ToastService
+  ) {}
 
   ngOnInit() {
-    this.lifts$ = this.serviceHttp.customAction("GET", "lifts", { driver: this.localService.userIsDriver });
+    this.serviceHttp.customAction("GET", "lifts", { driver: this.localService.userIsDriver }).subscribe({
+      next: (res: Lift[]) => {
+        if (res) {
+          res.map(res => {
+            res.start_location = parseLocation(res.start_location);
+            res.end_location = parseLocation(res.end_location);
+          })
 
-    // this.serviceHttp.customAction("GET", "lifts", null).subscribe({
-    //   next: res => {
-    //     if (res) {
-    //       this.lifts = res;
-    //       console.log(this.lifts)
-    //     }
-    //   },
-    //   error: err => {
-
-    //   }
-    // })
+          this.lifts = res;
+        }
+      },
+      error: err => {
+        this.toast.showToastError("Houve um erro ao carregar a lista");
+      }
+    })
   }
 }

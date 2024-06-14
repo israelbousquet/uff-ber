@@ -45,7 +45,7 @@
   <div class="locations">
     <div class="local-container">
       <p>Origem</p>
-      <h2>{{ lift.start_location }}</h2>
+      <h2>{{ lift.start_location?.name }}</h2>
 
       <div class="pin">
         <mat-icon inline="true">location_on</mat-icon>  
@@ -54,7 +54,7 @@
 
     <div class="local-container">
       <p>Destino</p>
-      <h2>{{ lift.end_location }}</h2>
+      <h2>{{ lift.end_location?.name }}</h2>
 
       <div class="pin">
         <mat-icon inline="true">location_on</mat-icon>  

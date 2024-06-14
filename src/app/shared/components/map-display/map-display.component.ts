@@ -50,6 +50,10 @@ export class MapDisplayComponent implements OnInit {
   }
 
   ngOnChanges() {
+    this.initializeMap();
+  }
+
+  initializeMap() {
     const fromLocation = this.from?.location;
     const toLocation = this.to?.location;
 

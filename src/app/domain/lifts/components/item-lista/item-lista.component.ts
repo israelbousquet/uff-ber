@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Lift } from '../../../../shared/interfaces/global-interfaces';
 
 @Component({
   selector: 'app-item-lista',
@@ -7,10 +8,10 @@ import { Router } from '@angular/router';
   styleUrl: './item-lista.component.scss'
 })
 export class ItemListaComponent {
-  @Input() lift: any;
+  @Input() lift!: Lift;
 
   constructor(private router: Router) {}
-
+  
   goLift() {
     this.router.navigate(['/lifts', this.lift.id]);
   }
