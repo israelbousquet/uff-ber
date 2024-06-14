@@ -4,6 +4,8 @@ import { FormGroup, FormControl, FormGroupDirective, Validators, FormBuilder } f
 import { Router } from '@angular/router';
 import { CustomValidators } from '../../../../validators/customValidators';
 import { ToastService } from '../../../../shared/services/toast-service.service';
+import { UserCreated } from '../../../../shared/interfaces/global-interfaces';
+import { LocalService } from '../../../../shared/services/local.service';
 
 @Component({
   selector: 'app-login',
@@ -17,8 +19,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     public router: Router, 
-    public serviceHttp: BaseResourceService<Array<any>>,
-    private toast: ToastService
+    public serviceHttp: BaseResourceService<UserCreated>,
+    private toast: ToastService,
+    public localService: LocalService
   ) {
   }
 
@@ -41,12 +44,15 @@ export class LoginComponent implements OnInit {
     const body = { login: { ...this.resourceForm.value }};
 
     this.serviceHttp.customAction("POST", "logins", body).subscribe({
-      next: res => {
-        console.log(res);
-        this.router.navigate(['/lifts']);
+      next: (res: UserCreated) => {
+        if (res) {
+          this.router.navigate(['/lifts']);
+          this.toast.showWelcome('Seja bem-vindo!')
+          this.localService.set("user", res);
+        }
       },
       error: err => {
-        this.toast.showToastError("Login Inválido");
+        this.toast.showToastError("Login Inválido, tente novamente.");
       },
     })
   }

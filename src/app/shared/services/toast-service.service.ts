@@ -15,8 +15,8 @@ export class ToastService {
         border: 'none',
         borderRadius: '10px',
         padding: '16px 24px',
-        color: '#ffffff',
-        backgroundColor: '#111214',
+        color: 'var(--primary-color)',
+        backgroundColor: 'var(--blue-primary-color-dark)',
         boxShadow: '10px 10px 21px -12px rgba(0,0,0,0.6)',
       },
       iconTheme: {
@@ -34,8 +34,8 @@ export class ToastService {
         border: 'none',
         borderRadius: '10px',
         padding: '16px 24px',
-        color: '#ffffff',
-        backgroundColor: '#111214',
+        color: 'var(--primary-color)',
+        backgroundColor: 'var(--blue-primary-color-dark)',
         boxShadow: '10px 10px 21px -12px rgba(0,0,0,0.6)',
       },
       iconTheme: {
@@ -45,17 +45,17 @@ export class ToastService {
     });
   }
 
-  showGoodJob(message: string) {
+  showWelcome(message: string) {
     this.toast.show(message, {
       duration: 2000,
       position: 'bottom-center',
-      icon: '👏',
+      icon: '😎',
       style: {
         border: 'none',
         borderRadius: '10px',
         padding: '16px 24px',
-        color: '#ffffff',
-        backgroundColor: '#111214',
+        color: 'var(--primary-color)',
+        backgroundColor: 'var(--blue-primary-color-dark)',
         boxShadow: '10px 10px 21px -12px rgba(0,0,0,0.6)',
       },
       iconTheme: {
