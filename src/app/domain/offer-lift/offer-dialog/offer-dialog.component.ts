@@ -39,6 +39,7 @@ export class OfferDialogComponent {
   ) {}
 
   ngOnInit() {
+    console.log(this.data);
     this.buildForm();
     this.filterWaypoints();
   }
@@ -71,18 +72,14 @@ export class OfferDialogComponent {
   }
 
   add() {
-    const body = {
-      passenger_id: this.localService.user.passenger_id,
-      pickup_location: JSON.stringify(this.form.value.origin),
-      dropoff_location: JSON.stringify(this.form.value.destination),
-    };
-
-    this.patchLift(body);
+    this.patchLift();
   }
 
-  patchLift(body: any) {
+  patchLift() {
     this.serviceHttp
-      .customAction('PATCH', `lifts/${this.lift.id}`, { lift: body })
+      .customAction('PATCH', `lifts/${this.lift.id}`, {
+        lift: this.resourceLift,
+      })
       .subscribe({
         next: (res) => {
           if (res) {
@@ -135,5 +132,27 @@ export class OfferDialogComponent {
 
   isValid(value: any): boolean {
     return typeof value === 'object' && value !== null;
+  }
+
+  get resourceLift(): any {
+    let body = {};
+
+    if (this.localService.hasUser) {
+      if (this.localService.userIsDriver) {
+        body = {
+          driver_id: this.localService.user.driver_id,
+          start_location: JSON.stringify(this.form.value.origin),
+          end_location: JSON.stringify(this.form.value.destination),
+        };
+      } else {
+        body = {
+          passenger_id: this.localService.user.passenger_id,
+          pickup_location: JSON.stringify(this.form.value.origin),
+          dropoff_location: JSON.stringify(this.form.value.destination),
+        };
+      }
+    }
+
+    return body;
   }
 }

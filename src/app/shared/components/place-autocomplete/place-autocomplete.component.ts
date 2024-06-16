@@ -11,10 +11,8 @@ import {
 import { AbstractControl, FormControl } from '@angular/forms';
 
 export interface PlaceSearchResult {
-  address: string;
+  address?: string;
   location?: google.maps.LatLng;
-  imageUrl?: string;
-  iconUrl?: string;
   name?: string;
 }
 @Component({

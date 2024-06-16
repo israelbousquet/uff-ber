@@ -6,16 +6,16 @@ import { ToastService } from '../../../shared/services/toast-service.service';
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrl: './content.component.scss'
+  styleUrl: './content.component.scss',
 })
 export class ContentComponent implements OnInit {
   innerWidth!: number;
   isLargeScreen!: boolean;
 
-  links: any[] = []
+  links: any[] = [];
 
   constructor(
-    public localService: LocalService, 
+    public localService: LocalService,
     private router: Router,
     public toast: ToastService
   ) {}
@@ -44,11 +44,13 @@ export class ContentComponent implements OnInit {
           routerLink: '/lifts',
         },
         {
-          name: this.localService.userIsDriver ? 'Oferecer carona' : 'Solicitar carona',
+          name: this.localService.userIsDriver
+            ? 'Oferecer carona'
+            : 'Solicitar carona',
           icon: 'add_circle',
           routerLink: 'offer-lift',
         },
-      ]
+      ];
     } else {
       links = [
         {
@@ -58,7 +60,7 @@ export class ContentComponent implements OnInit {
         {
           icon: 'add_circle',
           routerLink: 'offer-lift',
-        }
+        },
       ];
     }
 
@@ -66,8 +68,12 @@ export class ContentComponent implements OnInit {
   }
 
   logout() {
-    this.localService.remove("user");
-    this.toast.showToastSucess("Deslogado com sucesso");
+    this.localService.remove('user');
+    this.toast.showToastSucess('Deslogado com sucesso');
     this.router.navigate(['/auth/login']);
+  }
+
+  openVeiculo() {
+    this.router.navigate(['vehicle']);
   }
 }

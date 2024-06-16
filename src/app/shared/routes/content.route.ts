@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export const content: Routes = [
   {
@@ -9,10 +9,17 @@ export const content: Routes = [
   {
     path: 'offer-lift',
     loadChildren: () =>
-      import('../../domain/offer-lift/offer-lift.module').then((m) => m.OfferLiftModule),
+      import('../../domain/offer-lift/offer-lift.module').then(
+        (m) => m.OfferLiftModule
+      ),
+  },
+  {
+    path: 'vehicle',
+    loadChildren: () =>
+      import('../../domain/home/veiculo.module').then((m) => m.VeiculoModule),
   },
   {
     path: '**',
-    redirectTo: 'lifts'
+    redirectTo: 'lifts',
   },
-]
+];

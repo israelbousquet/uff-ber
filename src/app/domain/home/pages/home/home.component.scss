@@ -1,154 +1,87 @@
 :host {
-  .title {
-    padding: 40px 0px;
+  .call {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--blue-primary-color);
 
-    .container {
-      z-index: 2;
-      margin-top: 20px;
+    .call-img {
       margin-bottom: 40px;
 
-      h1 {
-        text-align: center;
-        font-size: 3rem;
-        font-weight: 700;
-        color: var(--blue-primary-color);
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
 
-    .container-search {
-      width: 60%;
-      margin: 0 auto;
+    h1 {
+      font-size: 9rem;
+      color: var(--blue-primary-color);
+    }
 
-      @media (max-width: 950px) {
-        width: 70%;
-      }
+    h3 {
+      font-size: 3rem;
+    }
 
-      @media (max-width: 700px) {
-        width: 80%;
-      }
+    @media (max-width: 900px) {
+      display: none;
     }
   }
 
-  .search-container {
+  .account-container {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color);
+    height: 100%;
+  }
+
+  .account {
+    background-color: var(--primary-color);
+    padding: 40px;
+    border-radius: 15px;
+    width: 70%;
+    // box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
     form {
       width: 100%;
-
-      .input {
-        flex: 1;
-
-        &.parada {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-
-          app-place-autocomplete {
-            flex: 1;
-          }
-        }
-      }
-
-      &.inputs-container {
-        .autocomplet-fields {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          align-items: center;
-        }
-
-        .date-search {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-      }
-
-      .search {
-        button {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 15px;
-          flex: 1;
-          width: 100%;
-          // min-width: 300px;
-          height: auto;
-          padding: 15px 20px;
-          border-radius: 28px;
-          font-weight: 600;
-          color: var(--primary-color);
-          background-color: var(--blue-primary-color);
-          font-size: .95rem;
-
-          mat-icon {
-            color: var(--primary-color);
-          }
-        }
-
-        @media (max-width: 520px) {
-          flex: 1;
-        }
-      }
     }
-  }
 
-  .maps {
-    width: 70%;
-    height: 450px;
-    margin: 0 auto;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
+    .login-title {
+      font-size: 3rem;
+      text-align: left;
+      width: 60%;
+    }
 
-    .loading {
-      z-index: 666;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 20px;
-      overflow: hidden;
-
+    .actions-form {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
 
-      background: #00b0f588;
-
-      .spinner {
-        border: 8px solid rgba(255, 255, 255, 0.3); /* Cor do spinner */
-        border-radius: 50%;
-        border-top: 8px solid #fff;
-        width: 70px;
-        height: 70px;
-        animation: spin 1s linear infinite; /* Animação de rotação */
-      }
-
-    }
-  }
-
-  button {
-    &.icon-action {
-      height: 30px;
-      width: 30px;
-      background: #eee;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: -15px;
-      transition: .25s ease;
-
-      &:hover {
-        background-color: var(--blue-primary-color-dark);
-        color: var(--primary-color);
+      .dont-have-account {
+        cursor: pointer;
+        font-size: .9rem;
       }
     }
   }
 
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .type-user {
+    margin-bottom: 20px;
   }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HomeRoutingModule } from './home-routing.module';
+import { VeiculoRoutingModule } from './veiculo-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,15 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-  ],
+  declarations: [HomeComponent],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    VeiculoRoutingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -32,7 +31,8 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    SharedModule
-  ]
+    MatSelectModule,
+    SharedModule,
+  ],
 })
-export class HomeModule { }
+export class VeiculoModule {}

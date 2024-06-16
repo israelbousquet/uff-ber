@@ -13,6 +13,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { OfferDialogComponent } from '../../../offer-lift/offer-dialog/offer-dialog.component';
 import { formatDuration } from '../../../../shared/helpers/format.helper';
+import { LocalService } from '../../../../shared/services/local.service';
 
 @Component({
   selector: 'app-lift-detail',
@@ -21,6 +22,7 @@ import { formatDuration } from '../../../../shared/helpers/format.helper';
 })
 export class LiftDetailComponent implements OnInit {
   lift!: Lift;
+  liftSemDriver!: Lift;
   waypoints: google.maps.DirectionsWaypoint[] = [];
   durationLift: string = '';
 
@@ -28,11 +30,13 @@ export class LiftDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private serviceHttp: BaseResourceService<Lift>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public localService: LocalService
   ) {}
 
   ngOnInit(): void {
     this.inicializeParams();
+    this.localService.userIsDriver;
   }
 
   inicializeParams() {
@@ -49,14 +53,34 @@ export class LiftDetailComponent implements OnInit {
       next: (res: Lift) => {
         if (res) {
           filteredIndivualLift(res);
-          this.createWaypoints(res);
           this.lift = res;
+          this.createWaypoints(res);
+          this.verifyLiftSemMotorista(res);
         }
       },
       error: (err) => {
         throw err;
       },
     });
+  }
+
+  verifyLiftSemMotorista(res: Lift) {
+    if (res.lift.driver_id == null) {
+      this.liftSemDriver = {
+        ...res,
+        lift: {
+          ...res.lift,
+          end_location: {
+            location: this.waypoints[0].location,
+          },
+          start_location: {
+            location: this.waypoints[1].location,
+          },
+        },
+      };
+    } else {
+      this.liftSemDriver = res;
+    }
   }
 
   navigate(url: string) {
@@ -112,6 +136,10 @@ export class LiftDetailComponent implements OnInit {
   }
 
   get liftDetail(): LiftDetail {
-    return this.lift?.lift;
+    if (this.lift?.lift?.driver_id) {
+      return this.lift?.lift;
+    } else {
+      return this.liftSemDriver?.lift;
+    }
   }
 }

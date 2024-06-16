@@ -1,73 +1,49 @@
-<section class="title">
-  <div class="container showUp">
-    <h1>Viagens baratas, para onde quiser.</h1>
-  </div>
+<section class="container h-100">
+  <div class="account-container">
+    <div class="account">
+      <h1 class="login-title showBottom">Faça o cadastro do veículo.</h1>
 
-  <div class="container-search showBottom">
-    <div class="search-container">
-      <form [formGroup]="form" class="inputs-container">
-        <div class="autocomplet-fields">
-          <div class="input">
-            <app-place-autocomplete [label]="'Saindo de'" [control]="getControl('origin')"></app-place-autocomplete>
-          </div>
-          <div class="input">
-            <app-place-autocomplete [label]="'Indo para'" [control]="getControl('destination')"></app-place-autocomplete>
-          </div>
-          <!-- <div class="input">
-            <app-place-autocomplete [label]="'Parada'" [control]="getControl('waypoint')"></app-place-autocomplete>
-          </div> -->
-
-          <button matTooltip="Adicionar parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="addWaypoint()"><mat-icon>add</mat-icon></button>
+      <form [formGroup]="form" class="showUp">
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Modelo</mat-label>
+            <input matInput formControlName="model" maxlength="50" />
+            <mat-icon matSuffix>directions_car</mat-icon>
+            <mat-error [errorValidators]="returnControl('name')"> </mat-error>
+          </mat-form-field>
         </div>
-        <div class="paradas">
-          <div formArrayName="waypoints">
-            <div *ngFor="let waypoint of waypoints.controls; let i = index" [formGroupName]="i" class="input parada">
-              <app-place-autocomplete [label]="'Parada ' + (i + 1)" [control]="waypoint"></app-place-autocomplete>
-
-              <button matTooltip="Remover parada" [matTooltipPosition]="'above'" class="icon-action" type="button" (click)="removeWaypoint(i)"><mat-icon>remove</mat-icon></button>
-            </div>
-          </div>
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Selecione o tipo do Veículo</mat-label>
+            <mat-select disableRipple>
+              <mat-option value="carro">Carro</mat-option>
+              <mat-option value="moto">Moto</mat-option>
+              <mat-option value="van">Van</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
-        <div class="date-search">
-          <div class="input">
-            <mat-form-field appearance="outline">
-              <mat-label>Hoje</mat-label>
-              <input matInput [matDatepicker]="datepicker" formControlName="date">
-              <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-              <mat-datepicker #datepicker>
-              </mat-datepicker>
-            </mat-form-field>
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Selecione o cor do Veículo</mat-label>
+            <mat-select disableRipple formControlName="color">
+              <mat-option value="red">Vermelho</mat-option>
+              <mat-option value="green">Verde</mat-option>
+              <mat-option value="blue">Azul</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
-          </div>
-          <div class="search">
-            <button (click)="search()">
-              {{ isMobile ? 'Procurar' : 'Procurar'}}
-              <mat-icon *ngIf="!isMobile">search</mat-icon>
-            </button>
-          </div>
+        <div class="actions-form">
+          <button
+            class="primary-button full-width"
+            type="submit"
+            [disabled]="!form.valid"
+            (click)="onSubmit()"
+          >
+            Cadastrar
+          </button>
         </div>
       </form>
     </div>
-
   </div>
 </section>
-
-<div class="map-container">
-  <div *ngIf="leg" class="details-travel">
-    <div class="distance">
-      <p>Distância: {{leg.distance?.text}}</p>
-    </div>
-    <div class="duration">
-      <p>Duração: {{leg.duration?.text}}</p>
-    </div>
-  </div>
-
-  <div class="maps">
-    <!-- <div *ngIf="isLoading" class="loading">
-      <div class="spinner"></div>
-    </div> -->
-
-    <!-- <app-map-display [from]="form.value.origin" [to]="form.value.destination" [waypointsInput]="form.value.waypoints" (loading)="isLoading = $event" (routeChange)="destinationChange($event)"></app-map-display> -->
-  </div>
-
-</div>

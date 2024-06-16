@@ -32,6 +32,7 @@
       justify-content: space-around;
 
       width: 70%;
+      height: 100%;
       position: relative;
       border-radius: 20px;
 
@@ -107,6 +108,19 @@
           font-size: 1.4rem;
           color: var(--blue-primary-color);
         }
+      }
+    }
+
+    .title-no-driver {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 30px;
+
+      h1 {
+        text-align: left;
+        font-size: 1.8rem;
+        color: var(--blue-primary-color-dark);
       }
     }
   }

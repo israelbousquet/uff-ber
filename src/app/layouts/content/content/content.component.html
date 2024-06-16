@@ -1,18 +1,18 @@
 <header>
   <div class="menu container">
     <div class="logo" [routerLink]="'/lifts'">
-      <h1 [ngClass]="{'mobile': !isLargeScreen}">UFFBer</h1>
+      <h1 [ngClass]="{ mobile: !isLargeScreen }">UFFBer</h1>
     </div>
     <div class="items-container showLeft">
       <div class="items" *ngFor="let link of links">
         <div class="item" [routerLink]="link.routerLink">
           <mat-icon>{{ link.icon }}</mat-icon>
-          <span *ngIf="link.name">{{link.name}}</span>
+          <span *ngIf="link.name">{{ link.name }}</span>
         </div>
       </div>
       <div class="perfil">
         <div class="img-perfil">
-          <img src="../assets/imgs/perfil-empty.png">
+          <img src="../assets/imgs/perfil-empty.png" />
         </div>
         <div class="detail" [matMenuTriggerFor]="menuUser">
           <mat-icon>expand_more</mat-icon>
@@ -37,6 +37,14 @@
   <button mat-menu-item>
     <mat-icon class="blue-primary">settings</mat-icon>
     <span>Conta</span>
+  </button>
+  <button
+    mat-menu-item
+    *ngIf="localService.userIsDriver"
+    (click)="openVeiculo()"
+  >
+    <mat-icon class="blue-primary">directions_car</mat-icon>
+    <span>Veículo atual</span>
   </button>
   <button mat-menu-item (click)="logout()">
     <mat-icon class="blue-primary">logout</mat-icon>

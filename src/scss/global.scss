@@ -82,6 +82,14 @@ button {
     &:hover {
       background-color: var(--blue-primary-color-light);
     }
+
+    &[disabled] {
+      background-color: var(--bg-color-dark);
+
+      &:hover {
+        background-color: var(--bg-color-dark);
+      }
+    }
   }
 
   &.outlined-button {

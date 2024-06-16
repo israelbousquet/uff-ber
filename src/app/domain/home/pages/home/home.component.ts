@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
+import { Vehicle } from '../../../../shared/interfaces/global-interfaces';
 
 @Component({
   selector: 'app-home',
@@ -17,74 +18,38 @@ import { BaseResourceService } from '../../../../shared/services/base-resource.s
 export class HomeComponent {
   form!: FormGroup;
   isMobile: boolean = false;
-  isLoading: boolean = false;
 
-  route: google.maps.DirectionsRoute | undefined;
-  leg: google.maps.DirectionsLeg | undefined;
+  veiculo!: Vehicle;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public serviceHttp: BaseResourceService<Array<any>>
+    public serviceHttp: BaseResourceService<Array<Vehicle>>
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    this.form.get('date')?.setValue(new Date());
-    this.serviceHttp.customAction('GET', 'comments', null).subscribe((res) => {
+    this.serviceHttp.customAction('GET', 'vehicles', null).subscribe((res) => {
       if (res) console.log(res);
     });
   }
 
   buildForm() {
     this.form = this.formBuilder.group({
-      origin: [null, Validators.required],
-      destination: [null, [Validators.required]],
-      waypoints: this.formBuilder.array([]),
-      date: [null, [Validators.required]],
+      model: [null, Validators.required],
+      color: [null, Validators.required],
+      type: [null, Validators.required],
     });
   }
 
-  createWaypoint(): FormGroup {
-    return this.formBuilder.group({
-      address: [null, Validators.required],
-    });
+  onSubmit() {
+    this.serviceHttp
+      .customAction('POST', 'vehicles', this.form.value)
+      .subscribe((res) => {
+        if (res) console.log(res);
+      });
   }
 
-  getControl(campo: string) {
+  returnControl(campo: string) {
     return this.form.get(campo) as FormControl;
-  }
-
-  search() {
-    console.log(this.form.value);
-  }
-
-  destinationChange(result: google.maps.DirectionsResult) {
-    if (result) {
-      this.route = result.routes[0];
-      this.leg = this.route.legs[0];
-
-      this.openGoogleMapsRoute();
-    }
-  }
-
-  openGoogleMapsRoute() {
-    const origin = this.form.value.origin.address;
-    const destination = this.form.value.destination.address;
-
-    const urlMaps = `https://www.google.com/maps/dir/?api=1&destination=${destination}&origin=${origin}&travelmode=driving`;
-    window.open(urlMaps, '_blank');
-  }
-
-  get waypoints(): FormArray {
-    return this.form.get('waypoints') as FormArray;
-  }
-
-  addWaypoint() {
-    const control = this.formBuilder.control(null, Validators.required);
-    this.waypoints.push(control);
-  }
-
-  removeWaypoint(index: number) {
-    this.waypoints.removeAt(index);
   }
 }

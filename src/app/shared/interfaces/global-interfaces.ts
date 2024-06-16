@@ -42,9 +42,18 @@ export interface Lift {
 }
 
 export interface Location {
-  address: string;
-  name: string;
-  location: any;
+  address?: string;
+  name?: string;
+  location?: any;
 }
 
+export interface Vehicle {
+  id?: number;
+  driver_id: number;
+  model: string;
+  color: string;
+  license_plate: string;
+  capacity: number;
+  type: string;
+}
 // 14000000000
