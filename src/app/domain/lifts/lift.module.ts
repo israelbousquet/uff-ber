@@ -13,13 +13,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-  declarations: [
-    LiftListComponent,
-    ItemListaComponent,
-    LiftDetailComponent,
-  ],
+  declarations: [LiftListComponent, ItemListaComponent, LiftDetailComponent],
   imports: [
     CommonModule,
     LiftRoutingModule,
@@ -32,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
-  ]
+    MatTooltipModule,
+    SharedModule,
+  ],
 })
-export class LiftModule { }
+export class LiftModule {}

@@ -1,6 +1,6 @@
-<section class="h-100">
+<section>
   <div class="container showUp">
-    <h1>{{ texts("title") }}</h1>
+    <h1>Insira seus pontos de parada</h1>
   </div>
 
   <div class="container-search showBottom">
@@ -20,9 +20,9 @@
             ></app-place-autocomplete>
           </div>
           <div class="search">
-            <button (click)="search()" [disabled]="createDisabled">
-              {{ texts("button") }}
-              <mat-icon *ngIf="!isMobile">{{ texts("icon") }}</mat-icon>
+            <button (click)="add()" [disabled]="createDisabled">
+              Adicionar
+              <mat-icon *ngIf="!isMobile">add</mat-icon>
             </button>
           </div>
         </div>
@@ -31,9 +31,16 @@
 
     <div class="maps">
       <app-map-display
-        [from]="form.value.origin"
-        [to]="form.value.destination"
+        [from]="lift.start_location"
+        [to]="lift.end_location"
+        [waypointsInput]="waypoints"
       ></app-map-display>
     </div>
+  </div>
+
+  <div class="actions">
+    <button (click)="close()" class="outlined-button" color="primary">
+      Fechar
+    </button>
   </div>
 </section>

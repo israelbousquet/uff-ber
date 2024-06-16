@@ -21,7 +21,7 @@ export class MapDisplayComponent implements OnInit {
 
   @Input() from: PlaceSearchResult | undefined;
   @Input() to: PlaceSearchResult | undefined;
-  @Input() waypointsInput: PlaceSearchResult[] | undefined;
+  @Input() waypointsInput: google.maps.DirectionsWaypoint[] | undefined;
 
   @Output() loading = new EventEmitter<boolean>(false);
 
@@ -32,11 +32,10 @@ export class MapDisplayComponent implements OnInit {
     google.maps.DirectionsResult | undefined
   >(undefined);
 
-  @Output() routeChange =
-    new EventEmitter<google.maps.DirectionsResult>();
+  @Output() routeChange = new EventEmitter<google.maps.DirectionsResult>();
 
   markerPositions: google.maps.LatLng[] = [];
-  waypoints: google.maps.DirectionsWaypoint[] = [];;
+  waypoints: google.maps.DirectionsWaypoint[] = [];
 
   constructor(private directionsService: MapDirectionsService) {}
 
@@ -58,14 +57,14 @@ export class MapDisplayComponent implements OnInit {
     const toLocation = this.to?.location;
 
     if (this.waypointsInput) {
-      this.waypoints = this.waypointsInput!.map((way: any) => {
-        const waypoint:google.maps.DirectionsWaypoint = {
-          stopover: true,
-          location: way?.location,
-        };
-  
-        return waypoint;
-      })
+      this.waypoints = this.waypointsInput
+        .filter((item: any) => item && item.location)
+        .map((item: any) => {
+          return {
+            stopover: true,
+            location: item.location,
+          } as google.maps.DirectionsWaypoint;
+        });
     }
 
     let directionDirty: boolean = false;

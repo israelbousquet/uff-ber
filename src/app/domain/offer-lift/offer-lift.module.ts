@@ -14,10 +14,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '../../shared/shared.module';
+import { OfferDialogComponent } from './offer-dialog/offer-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     OfferComponent,
+    OfferDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +35,7 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatDialogModule,
     SharedModule
   ]
 })

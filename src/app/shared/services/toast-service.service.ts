@@ -9,7 +9,7 @@ export class ToastService {
 
   showToastSucess(message: string) {
     this.toast.success(message, {
-      position: 'top-center',
+      position: 'bottom-center',
       duration: 2000,
       style: {
         border: 'none',
@@ -28,7 +28,7 @@ export class ToastService {
 
   showToastError(message: string) {
     this.toast.error(message, {
-      position: 'top-center',
+      position: 'bottom-center',
       duration: 2000,
       style: {
         border: 'none',
@@ -48,7 +48,7 @@ export class ToastService {
   showWelcome(message: string) {
     this.toast.show(message, {
       duration: 2000,
-      position: 'top-center',
+      position: 'bottom-center',
       icon: '😎',
       style: {
         border: 'none',

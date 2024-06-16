@@ -65,7 +65,7 @@ export class PlaceAutocompleteComponent implements OnInit {
           this.currentStateAutoComplete = true;
           this.ngZone.run(() => {
             this.placeChanged.emit(result);
-          })
+          });
         });
       });
     }, 1000);
@@ -74,7 +74,7 @@ export class PlaceAutocompleteComponent implements OnInit {
   getPhotoUrl(
     place: google.maps.places.PlaceResult | undefined
   ): string | undefined {
-    if ( place?.photos && place.photos.length > 0) {
+    if (place?.photos && place.photos.length > 0) {
       return place.photos[0].getUrl({ maxWidth: 500 });
     } else {
       return undefined;

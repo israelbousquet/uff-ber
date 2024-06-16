@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { LocalService } from '../../../shared/services/local.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../shared/services/toast-service.service';
 
 @Component({
   selector: 'app-content',
@@ -13,7 +14,11 @@ export class ContentComponent implements OnInit {
 
   links: any[] = []
 
-  constructor(public localService: LocalService, private router: Router) {}
+  constructor(
+    public localService: LocalService, 
+    private router: Router,
+    public toast: ToastService
+  ) {}
 
   ngOnInit() {
     this.innerWidth = window.innerWidth;
@@ -39,7 +44,7 @@ export class ContentComponent implements OnInit {
           routerLink: '/lifts',
         },
         {
-          name: 'Oferecer carona',
+          name: this.localService.userIsDriver ? 'Oferecer carona' : 'Solicitar carona',
           icon: 'add_circle',
           routerLink: 'offer-lift',
         },
@@ -62,6 +67,7 @@ export class ContentComponent implements OnInit {
 
   logout() {
     this.localService.remove("user");
-    this.router.navigate(['/auth/login'])
+    this.toast.showToastSucess("Deslogado com sucesso");
+    this.router.navigate(['/auth/login']);
   }
 }

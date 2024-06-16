@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormArray,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 import { LocalService } from '../../../shared/services/local.service';
@@ -8,7 +14,7 @@ import { ToastService } from '../../../shared/services/toast-service.service';
 @Component({
   selector: 'app-offer',
   templateUrl: './offer.component.html',
-  styleUrl: './offer.component.scss'
+  styleUrl: './offer.component.scss',
 })
 export class OfferComponent {
   form!: FormGroup;
@@ -18,9 +24,9 @@ export class OfferComponent {
   leg: google.maps.DirectionsLeg | undefined;
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private router: Router, 
-    public serviceHttp: BaseResourceService<Array<any>>, 
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public serviceHttp: BaseResourceService<Array<any>>,
     public localService: LocalService,
     public toast: ToastService
   ) {}
@@ -30,30 +36,47 @@ export class OfferComponent {
     this.form.get('date')?.setValue(new Date());
   }
 
-  buildForm() { 
+  buildForm() {
     this.form = this.formBuilder.group({
       origin: [null, Validators.required],
       destination: [null, [Validators.required]],
-      date: [null, [Validators.required]]
-    })
+      date: [null, [Validators.required]],
+    });
+  }
+
+  texts(value: 'title' | 'button' | 'icon'): string {
+    const passenger: { [key: string]: string } = {
+      title: 'Solicite sua carona aqui',
+      button: 'Solicitar',
+      icon: 'arrow_upward',
+    };
+
+    const driver: { [key: string]: string } = {
+      title: 'Crie sua carona aqui',
+      button: 'Criar',
+      icon: 'add',
+    };
+
+    if (this.localService.userIsDriver) return driver[value];
+    else return passenger[value];
   }
 
   get resourceLift(): any {
     let body = {};
 
-    if (this.localService.hasUser ) {
+    if (this.localService.hasUser) {
       if (this.localService.userIsDriver) {
         body = {
           driver_id: this.localService.user.driver_id,
           start_location: JSON.stringify(this.form.value.origin),
           end_location: JSON.stringify(this.form.value.destination),
-        }
+        };
       } else {
         body = {
           passenger_id: this.localService.user.passenger_id,
           pickup_location: JSON.stringify(this.form.value.origin),
-          dropoff_location: JSON.stringify(this.form.value.destination)
-        }
+          dropoff_location: JSON.stringify(this.form.value.destination),
+        };
       }
     }
 
@@ -65,18 +88,22 @@ export class OfferComponent {
   }
 
   search() {
-    this.serviceHttp.customAction("POST", "lifts", { lift: this.resourceLift }).subscribe({
-      next: res => {
-        if (res) {
-          this.router.navigate(['/lifts'])
-          this.toast.showToastSucess('Carona criada com sucesso!');
-        }
-      },
-      error: err => {
-        this.toast.showToastError('Ocorreu um erro ao tentar criar a carona.');
-        throw(err);
-      }
-    })
+    this.serviceHttp
+      .customAction('POST', 'lifts', { lift: this.resourceLift })
+      .subscribe({
+        next: (res) => {
+          if (res) {
+            this.router.navigate(['/lifts']);
+            this.toast.showToastSucess('Carona criada com sucesso!');
+          }
+        },
+        error: (err) => {
+          this.toast.showToastError(
+            'Ocorreu um erro ao tentar criar a carona.'
+          );
+          throw err;
+        },
+      });
   }
 
   // gets
@@ -97,7 +124,7 @@ export class OfferComponent {
 
   createWaypoint(): FormGroup {
     return this.formBuilder.group({
-      address: [null, Validators.required]
+      address: [null, Validators.required],
     });
   }
 }

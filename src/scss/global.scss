@@ -25,6 +25,7 @@
 .h-100 {
   height: calc(100vh - 70px);
 }
+
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
@@ -35,6 +36,7 @@
 *::-webkit-scrollbar {
   width: 8px;
 }
+
 //barra total
 *::-webkit-scrollbar-track {
   background: var(--bar-bg);
@@ -82,8 +84,35 @@ button {
     }
   }
 
+  &.outlined-button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: var(--tertiary-color-dark-2);
+    border: 1px solid var(--tertiary-color-dark-2);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color .2s ease;
+
+    &:hover {
+      background-color: var(--tertiary-color-dark-2);
+      color: var(--primary-color)
+    }
+  }
+
   &[disabled] {
     background-color: var(--bg-color-dark);
+  }
+}
+
+.title-route {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  color: var(--blue-primary-color-dark-light);
+
+  mat-icon {
+    cursor: pointer;
   }
 }
 

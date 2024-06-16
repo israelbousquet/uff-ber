@@ -1,5 +1,13 @@
 <section class="container content">
-  <h1 class="showUp">Carona</h1>
+  <div class="title-route">
+    <mat-icon
+      matTooltip="Voltar"
+      [matTooltipPosition]="'above'"
+      (click)="navigate('/lifts')"
+      >arrow_back</mat-icon
+    >
+    <h1 class="showUp">Carona</h1>
+  </div>
 
   <div class="maps-location-container">
     <div class="locations showBottom">
@@ -9,7 +17,7 @@
           <mat-icon>location_on</mat-icon>
         </div>
 
-        <div class="local">{{ lift?.start_location?.name }}</div>
+        <div class="local">{{ liftDetail?.start_location?.name }}</div>
       </div>
 
       <div class="direction">
@@ -24,12 +32,34 @@
           <mat-icon>location_on</mat-icon>
         </div>
 
-        <div class="local">{{ lift?.end_location?.name }}</div>
+        <div class="local">{{ liftDetail?.end_location?.name }}</div>
       </div>
     </div>
 
-    <div class="maps showUp" *ngIf="lift">
-      <app-map-display [from]="lift.start_location" [to]="lift.end_location" [waypointsInput]="[]" (loading)="isLoading = $event"></app-map-display>
+    <div class="maps showUp" *ngIf="liftDetail">
+      <app-map-display
+        [from]="liftDetail.start_location"
+        [to]="liftDetail.end_location"
+        [waypointsInput]="waypoints"
+        (routeChange)="routeChange($event)"
+      ></app-map-display>
+    </div>
+  </div>
+
+  <div class="adicionar-pontos">
+    <button class="primary-button" (click)="addWaypoint()">
+      Quero participar da carona
+    </button>
+
+    <div class="details-container showLeft" *ngIf="durationLift.length > 0">
+      <div class="detail">
+        <mat-icon inline="true">group</mat-icon>
+        <p>{{ lift?.waypoints?.length }} passageiros</p>
+      </div>
+      <div class="detail" *ngIf="durationLift.length > 0">
+        <mat-icon inline="true">timer</mat-icon>
+        <p>{{ durationLift }}</p>
+      </div>
     </div>
   </div>
 </section>

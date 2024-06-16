@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+  FormArray,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   form!: FormGroup;
@@ -15,29 +21,32 @@ export class HomeComponent {
 
   route: google.maps.DirectionsRoute | undefined;
   leg: google.maps.DirectionsLeg | undefined;
-  constructor(private formBuilder: FormBuilder, private router: Router, public serviceHttp: BaseResourceService<Array<any>>) {
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    public serviceHttp: BaseResourceService<Array<any>>
+  ) {}
 
   ngOnInit() {
     this.buildForm();
     this.form.get('date')?.setValue(new Date());
-    this.serviceHttp.customAction("GET", "comments", null).subscribe(res => {
-      if (res) console.log(res)
-    })
+    this.serviceHttp.customAction('GET', 'comments', null).subscribe((res) => {
+      if (res) console.log(res);
+    });
   }
 
-  buildForm() { 
+  buildForm() {
     this.form = this.formBuilder.group({
       origin: [null, Validators.required],
       destination: [null, [Validators.required]],
       waypoints: this.formBuilder.array([]),
-      date: [null, [Validators.required]]
-    })
+      date: [null, [Validators.required]],
+    });
   }
 
   createWaypoint(): FormGroup {
     return this.formBuilder.group({
-      address: [null, Validators.required]
+      address: [null, Validators.required],
     });
   }
 
@@ -46,7 +55,7 @@ export class HomeComponent {
   }
 
   search() {
-    console.log(this.form.value)
+    console.log(this.form.value);
   }
 
   destinationChange(result: google.maps.DirectionsResult) {
@@ -63,7 +72,7 @@ export class HomeComponent {
     const destination = this.form.value.destination.address;
 
     const urlMaps = `https://www.google.com/maps/dir/?api=1&destination=${destination}&origin=${origin}&travelmode=driving`;
-    window.open(urlMaps, '_blank')
+    window.open(urlMaps, '_blank');
   }
 
   get waypoints(): FormArray {
