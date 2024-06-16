@@ -36,17 +36,20 @@ export class HomeComponent {
   buildForm() {
     this.form = this.formBuilder.group({
       model: [null, Validators.required],
+      license_plate: [null, Validators.required],
+      capacity: [null, Validators.required],
       color: [null, Validators.required],
       type: [null, Validators.required],
     });
   }
 
   onSubmit() {
-    this.serviceHttp
-      .customAction('POST', 'vehicles', this.form.value)
-      .subscribe((res) => {
-        if (res) console.log(res);
-      });
+    console.log(this.form.value);
+    // this.serviceHttp
+    //   .customAction('POST', 'vehicles', this.form.value)
+    //   .subscribe((res) => {
+    //     if (res) console.log(res);
+    //   });
   }
 
   returnControl(campo: string) {

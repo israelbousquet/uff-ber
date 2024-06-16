@@ -14,12 +14,36 @@
         </div>
         <div class="input-box">
           <mat-form-field appearance="outline">
+            <mat-label>Placa</mat-label>
+            <input matInput formControlName="license_plate" maxlength="7" />
+            <mat-icon matSuffix>license</mat-icon>
+            <mat-error [errorValidators]="returnControl('license_plate')">
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-box">
+          <mat-form-field appearance="outline">
+            <mat-label>Capacidade</mat-label>
+            <input
+              type="number"
+              matInput
+              formControlName="capacity"
+              maxlength="2"
+            />
+            <mat-icon matSuffix>license</mat-icon>
+            <mat-error [errorValidators]="returnControl('capacity')">
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="input-box">
+          <mat-form-field appearance="outline">
             <mat-label>Selecione o tipo do Veículo</mat-label>
-            <mat-select disableRipple>
+            <mat-select disableRipple formControlName="type">
               <mat-option value="carro">Carro</mat-option>
               <mat-option value="moto">Moto</mat-option>
               <mat-option value="van">Van</mat-option>
             </mat-select>
+            <mat-error [errorValidators]="returnControl('type')"> </mat-error>
           </mat-form-field>
         </div>
         <div class="input-box">
@@ -30,6 +54,7 @@
               <mat-option value="green">Verde</mat-option>
               <mat-option value="blue">Azul</mat-option>
             </mat-select>
+            <mat-error [errorValidators]="returnControl('color')"> </mat-error>
           </mat-form-field>
         </div>
 
