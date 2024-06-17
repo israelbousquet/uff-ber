@@ -18,7 +18,7 @@
             <mat-icon>location_on</mat-icon>
           </div>
 
-          <div class="local">{{ liftDetail?.start_location?.name }}</div>
+          <div class="local">{{ liftDetail.start_location.name }}</div>
         </div>
 
         <div class="direction">
@@ -33,7 +33,7 @@
             <mat-icon>location_on</mat-icon>
           </div>
 
-          <div class="local">{{ liftDetail?.end_location?.name }}</div>
+          <div class="local">{{ liftDetail.end_location.name }}</div>
         </div>
       </div>
     </ng-container>
@@ -60,15 +60,19 @@
     </div>
   </div>
 
-  <div class="adicionar-pontos" *ngIf="!localService.userIsDriver">
-    <button class="primary-button" (click)="addWaypoint()">
+  <div class="adicionar-pontos" *ngIf="durationLift.length > 0">
+    <button
+      *ngIf="!localService.userIsDriver"
+      class="primary-button showLeft"
+      (click)="addWaypoint()"
+    >
       Quero participar da carona
     </button>
 
-    <div class="details-container showLeft" *ngIf="durationLift.length > 0">
-      <div class="detail">
+    <div class="details-container showLeft">
+      <div class="detail" *ngIf="!localService.userIsDriver">
         <mat-icon inline="true">group</mat-icon>
-        <p>{{ lift?.waypoints?.length }} passageiros</p>
+        <p>{{ getPassengers }}</p>
       </div>
       <div class="detail" *ngIf="durationLift.length > 0">
         <mat-icon inline="true">timer</mat-icon>

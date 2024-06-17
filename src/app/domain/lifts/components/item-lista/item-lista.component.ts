@@ -1,19 +1,25 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Lift, LiftDetail } from '../../../../shared/interfaces/global-interfaces';
+import {
+  Lift,
+  LiftDetail,
+} from '../../../../shared/interfaces/global-interfaces';
 
 @Component({
   selector: 'app-item-lista',
   templateUrl: './item-lista.component.html',
-  styleUrl: './item-lista.component.scss'
+  styleUrl: './item-lista.component.scss',
 })
 export class ItemListaComponent {
   @Input() lift!: LiftDetail;
+  @Input() isHistory: boolean = false;
 
   constructor(private router: Router) {}
-  
+
   goLift() {
-    this.router.navigate(['/lifts', this.lift.id]);
+    if (!this.isHistory) {
+      this.router.navigate(['/lifts', this.lift.id]);
+    }
   }
 
   get colorStatus(): string {
@@ -22,9 +28,9 @@ export class ItemListaComponent {
       pending: 'rgb(249 193 1)',
       cancelled: 'rgb(217 24 24)',
       ended: 'var(--blue-primary-color)',
-    }
-    
-    return colors[this.lift.status] || 'rgb(217 24 24)';
+    };
+
+    return colors[this.lift.status!] || 'rgb(217 24 24)';
   }
 
   get getStatus(): string {
@@ -33,8 +39,8 @@ export class ItemListaComponent {
       pending: 'Sem motorista',
       ended: 'Finalizada',
       cancelled: 'Cancelada',
-    }
+    };
 
-    return situacoes[this.lift.status]
+    return situacoes[this.lift.status!];
   }
 }

@@ -22,6 +22,10 @@
   }
 }
 
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: 28px;
+}
+
 .h-100 {
   height: calc(100vh - 70px);
 }

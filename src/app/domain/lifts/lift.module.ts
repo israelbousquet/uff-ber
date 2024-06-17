@@ -14,9 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LiftHistoryComponent } from './pages/lift-history/lift-history.component';
 
 @NgModule({
-  declarations: [LiftListComponent, ItemListaComponent, LiftDetailComponent],
+  declarations: [LiftListComponent, ItemListaComponent, LiftDetailComponent, LiftHistoryComponent],
   imports: [
     CommonModule,
     LiftRoutingModule,

@@ -34,14 +34,14 @@
     <mat-icon class="blue-primary">person</mat-icon>
     <span>Cadastre-se</span>
   </button> -->
-  <button mat-menu-item>
+  <button mat-menu-item (click)="navigate('perfil')">
     <mat-icon class="blue-primary">settings</mat-icon>
     <span>Conta</span>
   </button>
   <button
     mat-menu-item
     *ngIf="localService.userIsDriver"
-    (click)="openVeiculo()"
+    (click)="navigate('vehicle')"
   >
     <mat-icon class="blue-primary">directions_car</mat-icon>
     <span>Veículo atual</span>

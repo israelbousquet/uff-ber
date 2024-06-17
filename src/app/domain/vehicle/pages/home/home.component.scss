@@ -54,16 +54,50 @@
     flex-direction: row;
     gap: 20px;
 
+    @media (max-width: 1200px) {
+      flex-direction: column;
+    }
+
+    @media (max-width: 700px) {
+      width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      padding: 0px;
+    }
+
     form {
       width: 100%;
     }
 
-    .login-title {
-      font-size: 3rem;
-      text-align: left;
-      width: 60%;
+    .title-container {
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+
+      mat-icon {
+        font-size: 40px;
+        height: 40px;
+        width: 40px;
+        color: var(--blue-primary-color)
+      }
+
+      .login-title {
+        font-size: 3rem;
+        text-align: left;
+        width: 80%;
+        display: flex;
+        align-items: center;
+
+        @media (max-width: 1200px) {
+          width: 100%;
+        }
+
+        @media (max-width: 700px) {
+          font-size: 2rem;
+        }
+      }
     }
 
     .actions-form {

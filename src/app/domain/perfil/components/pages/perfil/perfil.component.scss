@@ -1,0 +1,62 @@
+:host {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .perfil-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 45px;
+
+    padding: 50px;
+    border-radius: 28px;
+    background-color: var(--primary-color);
+    box-shadow: var(--shadow-bt);
+    width: 650px;
+
+    .perfil-img {
+      mat-icon {
+        font-size: 40px;
+        height: 40px;
+        width: 40px;
+        color: var(--blue-primary-color);
+      }
+
+      h1 {
+        font-size: 3rem
+      }
+    }
+
+    .perfil-item {
+      padding: 15px 0px;
+
+      &~.perfil-item {
+        border-top: 1px solid var(--tertiary-color);
+      }
+
+      &.avaliation {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+
+    .detail {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      p {
+        font-size: .95rem;
+        font-weight: 600;
+      }
+
+      mat-icon {
+        color: var(--blue-primary-color);
+      }
+    }
+  }
+}

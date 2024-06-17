@@ -29,7 +29,6 @@ export class LiftListComponent implements OnInit {
     this.serviceHttp.customAction('GET', this.endpointList, null).subscribe({
       next: (res: LiftDetail[]) => {
         if (res) {
-          console.log(res);
           res.map((res) => {
             res.start_location = parseLocation(res.start_location);
             res.end_location = parseLocation(res.end_location);

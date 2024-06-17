@@ -14,9 +14,16 @@ export const content: Routes = [
       ),
   },
   {
+    path: 'perfil',
+    loadChildren: () =>
+      import('../../domain/perfil/perfil.module').then((m) => m.PerfilModule),
+  },
+  {
     path: 'vehicle',
     loadChildren: () =>
-      import('../../domain/home/veiculo.module').then((m) => m.VeiculoModule),
+      import('../../domain/vehicle/veiculo.module').then(
+        (m) => m.VeiculoModule
+      ),
   },
   {
     path: '**',

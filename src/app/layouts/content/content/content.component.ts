@@ -50,6 +50,11 @@ export class ContentComponent implements OnInit {
           icon: 'add_circle',
           routerLink: 'offer-lift',
         },
+        {
+          name: 'Histórico',
+          icon: 'manage_search',
+          routerLink: '/lifts/history',
+        },
       ];
     } else {
       links = [
@@ -67,13 +72,13 @@ export class ContentComponent implements OnInit {
     this.links = links;
   }
 
+  navigate(url: string) {
+    this.router.navigate([url]);
+  }
+
   logout() {
     this.localService.remove('user');
     this.toast.showToastSucess('Deslogado com sucesso');
     this.router.navigate(['/auth/login']);
-  }
-
-  openVeiculo() {
-    this.router.navigate(['vehicle']);
   }
 }

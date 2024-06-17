@@ -1,4 +1,4 @@
-<div class="card showBottom">
+<div class="card showBottom" (click)="goLift()">
   <!-- <div class="route-item">
     <p class="route">Origem: </p>
     <p>{{ raceData.race?.route?.origin }}</p>
@@ -43,14 +43,19 @@
   </div> -->
 
   <div class="status-container">
-    <div class="flag" [style.background-color]="colorStatus"></div>
-    <p>{{ getStatus }}</p>
+    <div class="flag-container">
+      <div class="flag" [style.background-color]="colorStatus"></div>
+      <p>{{ getStatus }}</p>
+    </div>
+    <div class="icon-top">
+      <mat-icon>ads_click</mat-icon>
+    </div>
   </div>
 
   <div class="locations">
     <div class="local-container">
       <p>Origem</p>
-      <h2>{{ lift.start_location?.name }}</h2>
+      <h2>{{ lift?.start_location?.name }}</h2>
 
       <div class="pin">
         <mat-icon inline="true">location_on</mat-icon>
@@ -59,7 +64,7 @@
 
     <div class="local-container">
       <p>Destino</p>
-      <h2>{{ lift.end_location?.name }}</h2>
+      <h2>{{ lift?.end_location?.name }}</h2>
 
       <div class="pin">
         <mat-icon inline="true">location_on</mat-icon>
@@ -70,14 +75,19 @@
   <div class="divider light"></div>
 
   <div class="actions">
-    <button (click)="goLift()" type="button" class="button-lift">
+    <button
+      *ngIf="!isHistory"
+      (click)="goLift()"
+      type="button"
+      class="button-lift"
+    >
       <mat-icon inline="true">visibility</mat-icon> Visualizar corrida
     </button>
 
     <div class="details-race">
       <button class="chip">
         <mat-icon inline="true">calendar_month</mat-icon>
-        <p>{{ lift.created_at | date : "dd/MM/yyyy" }}</p>
+        <p>{{ lift?.created_at | date : "dd/MM/yyyy" }}</p>
       </button>
     </div>
   </div>

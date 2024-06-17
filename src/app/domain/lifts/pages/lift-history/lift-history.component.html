@@ -1,0 +1,23 @@
+<section class="container content">
+  <div class="showUp">
+    <h1>Veja seu histórico de caronas.</h1>
+  </div>
+
+  <div class="container-grid" *ngIf="lifts.length > 0">
+    <app-item-lista
+      *ngFor="let lift of lifts"
+      [lift]="lift"
+      [isHistory]="true"
+    ></app-item-lista>
+  </div>
+
+  <div class="lifts-empty showBottom" *ngIf="lifts.length == 0">
+    <p>Nenhuma carona registrada até o momento, faça a sua primeira!</p>
+
+    <div class="create-lift">
+      <button class="primary-button" (click)="offerLift()">
+        {{ localService.userIsDriver ? "Oferecer carona" : "Solicitar carona" }}
+      </button>
+    </div>
+  </div>
+</section>

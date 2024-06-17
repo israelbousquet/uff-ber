@@ -29,11 +29,11 @@ export function filteredIndivualLift(res: Lift) {
 }
 
 export function filterLift(res: Lift) {
-  res.lift.start_location = parseLocation(res.lift.start_location);
-  res.lift.end_location = parseLocation(res.lift.end_location);
+  res.lift!.start_location = parseLocation(res.lift!.start_location);
+  res.lift!.end_location = parseLocation(res.lift!.end_location);
 
-  res.lift.start_location = convertToLatLng(res.lift.start_location);
-  res.lift.end_location = convertToLatLng(res.lift.end_location);
+  res.lift!.start_location = convertToLatLng(res.lift!.start_location);
+  res.lift!.end_location = convertToLatLng(res.lift!.end_location);
 }
 
 export function filteredWaypoint(res: Lift) {

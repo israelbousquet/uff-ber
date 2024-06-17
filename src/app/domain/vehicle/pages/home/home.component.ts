@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
 import { Vehicle } from '../../../../shared/interfaces/global-interfaces';
+import { LocalService } from '../../../../shared/services/local.service';
 
 @Component({
   selector: 'app-home',
@@ -23,7 +24,8 @@ export class HomeComponent {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    public serviceHttp: BaseResourceService<Array<Vehicle>>
+    public serviceHttp: BaseResourceService<Array<Vehicle>>,
+    public local: LocalService
   ) {}
 
   ngOnInit() {
@@ -44,12 +46,16 @@ export class HomeComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
-    // this.serviceHttp
-    //   .customAction('POST', 'vehicles', this.form.value)
-    //   .subscribe((res) => {
-    //     if (res) console.log(res);
-    //   });
+    const body = {
+      driver_id: this.local.user.driver_id,
+      ...this.form.value,
+    };
+
+    this.serviceHttp
+      .customAction('POST', 'vehicles', { vehicle: body })
+      .subscribe((res) => {
+        if (res) console.log(res);
+      });
   }
 
   returnControl(campo: string) {

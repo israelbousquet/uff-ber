@@ -39,7 +39,6 @@ export class OfferDialogComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.data);
     this.buildForm();
     this.filterWaypoints();
   }

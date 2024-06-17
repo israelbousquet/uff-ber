@@ -1,0 +1,28 @@
+<section class="container content h-100">
+  <div class="perfil-content">
+    <div class="perfil-img">
+      <mat-icon>person</mat-icon>
+      <h1>Seus dados</h1>
+    </div>
+
+    <div class="perfil-content-list">
+      <div class="perfil-item">
+        <p><b>Nome:</b> {{ perfil?.nome }}</p>
+      </div>
+      <div class="perfil-item">
+        <p><b>IdUFF:</b> {{ perfil?.iduff }}</p>
+      </div>
+      <div class="perfil-item avaliation">
+        <p><b>Avaliação geral:</b></p>
+        <div class="detail">
+          <div class="avaliation">
+            <mat-icon>star</mat-icon>
+            <mat-icon>star</mat-icon>
+            <mat-icon>star</mat-icon>
+            <mat-icon>star</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

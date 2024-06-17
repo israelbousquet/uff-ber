@@ -135,11 +135,26 @@ export class LiftDetailComponent implements OnInit {
     });
   }
 
+  // gets
   get liftDetail(): LiftDetail {
     if (this.lift?.lift?.driver_id) {
       return this.lift?.lift;
     } else {
       return this.liftSemDriver?.lift;
     }
+  }
+
+  get getPassengers(): string {
+    let texto = `${this.waypoints.length} passageiros`;
+
+    if (this.waypoints.length == 1) {
+      texto = '1 passageiro';
+    }
+
+    if (this.waypoints.length == 0) {
+      texto = 'Sem passageiros';
+    }
+
+    return texto;
   }
 }
