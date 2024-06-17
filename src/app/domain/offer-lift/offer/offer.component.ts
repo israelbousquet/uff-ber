@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../shared/services/base-resource.service';
 import { LocalService } from '../../../shared/services/local.service';
 import { ToastService } from '../../../shared/services/toast-service.service';
+import { SwalService } from '../../../shared/services/swal.service';
 
 @Component({
   selector: 'app-offer',
@@ -28,7 +29,8 @@ export class OfferComponent {
     private router: Router,
     public serviceHttp: BaseResourceService<Array<any>>,
     public localService: LocalService,
-    public toast: ToastService
+    public toast: ToastService,
+    public swal: SwalService
   ) {}
 
   ngOnInit() {
@@ -94,12 +96,13 @@ export class OfferComponent {
         next: (res) => {
           if (res) {
             this.router.navigate(['/lifts']);
-            this.toast.showToastSucess('Carona criada com sucesso!');
+            this.swal.showMessage('Carona criada com sucesso!', 'success');
           }
         },
         error: (err) => {
-          this.toast.showToastError(
-            'Ocorreu um erro ao tentar criar a carona.'
+          this.swal.showMessage(
+            'Ocorreu um erro ao tentar criar a carona',
+            'error'
           );
           throw err;
         },

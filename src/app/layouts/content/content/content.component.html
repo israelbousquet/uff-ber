@@ -4,12 +4,19 @@
       <h1 [ngClass]="{ mobile: !isLargeScreen }">UFFBer</h1>
     </div>
     <div class="items-container showLeft">
-      <div class="items" *ngFor="let link of links">
-        <div class="item" [routerLink]="link.routerLink">
-          <mat-icon>{{ link.icon }}</mat-icon>
-          <span *ngIf="link.name">{{ link.name }}</span>
+      <ng-container *ngIf="isLargeScreen">
+        <div class="items" *ngFor="let link of links">
+          <div class="item" [routerLink]="link.routerLink">
+            <mat-icon>{{ link.icon }}</mat-icon>
+            <span *ngIf="link.name">{{ link.name }}</span>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-container *ngIf="!isLargeScreen">
+        <button [matMenuTriggerFor]="menuMobile">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </ng-container>
       <div class="perfil">
         <div class="img-perfil">
           <img src="../assets/imgs/perfil-empty.png" />
@@ -26,14 +33,6 @@
 </main>
 
 <mat-menu #menuUser="matMenu" xPosition="before">
-  <!-- <button mat-menu-item [routerLink]="'auth/login'" *ngIf="!localService.hasUser">
-    <mat-icon class="blue-primary">login</mat-icon>
-    <span>Login</span>
-  </button>
-  <button mat-menu-item [routerLink]="'auth/login'">
-    <mat-icon class="blue-primary">person</mat-icon>
-    <span>Cadastre-se</span>
-  </button> -->
   <button mat-menu-item (click)="navigate('perfil')">
     <mat-icon class="blue-primary">settings</mat-icon>
     <span>Conta</span>
@@ -50,4 +49,13 @@
     <mat-icon class="blue-primary">logout</mat-icon>
     <span>Sair</span>
   </button>
+</mat-menu>
+
+<mat-menu #menuMobile="matMenu" xPosition="before">
+  <div class="items-menu-mobile" *ngFor="let link of links">
+    <button mat-menu-item class="item" [routerLink]="link.routerLink">
+      <mat-icon class="blue-primary">{{ link.icon }}</mat-icon>
+      <span *ngIf="link.name">{{ link.name }}</span>
+    </button>
+  </div>
 </mat-menu>

@@ -25,7 +25,7 @@ export class LiftHistoryComponent implements OnInit {
     this.serviceHttp
       .customAction(
         'GET',
-        `history?id=1${this.localService.user.user_id}`,
+        `users/${this.localService.user.user_id}/history`,
         null
       )
       .subscribe({

@@ -6,7 +6,9 @@ export function formatDuration(seconds: number): string {
     if (totalMinutes >= 60) {
       const hours = Math.floor(totalMinutes / 60);
       const minutes = totalMinutes % 60;
-      formattedDuration = `${hours} horas e ${minutes} minutos`;
+      formattedDuration = `${hours} ${
+        hours === 1 ? 'hora' : 'horas'
+      } e ${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
     } else {
       formattedDuration = `${totalMinutes} minutos`;
     }

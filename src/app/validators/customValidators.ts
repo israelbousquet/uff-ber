@@ -1,4 +1,9 @@
-import { AbstractControl, FormControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 
 export class CustomValidators {
   static validateInputLength(control: FormControl) {
@@ -86,4 +91,12 @@ export class CustomValidators {
     }
     return null;
   }
+}
+
+export function mercosulPlateValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const plateRegex = /^[a-zA-Z]{3}[0-9][A-Za-z0-9][0-9]{2}$/;
+    const valid = plateRegex.test(control.value);
+    return valid ? null : { mercosulPlate: { value: control.value } };
+  };
 }

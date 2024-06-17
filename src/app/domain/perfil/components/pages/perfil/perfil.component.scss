@@ -1,4 +1,8 @@
 :host {
+  section {
+    height: calc(100vh - 100px);
+  }
+
   .container {
     display: flex;
     align-items: center;

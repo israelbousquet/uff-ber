@@ -1,9 +1,9 @@
 <section class="container h-100">
   <div class="account-container">
     <div class="account">
-      <div class="title-container">
+      <div class="title-container showBottom">
         <mat-icon>directions_car</mat-icon>
-        <h1 class="login-title showBottom">Faça o cadastro do veículo.</h1>
+        <h1 class="login-title">Faça o cadastro do veículo.</h1>
       </div>
 
       <form [formGroup]="form" class="showUp">
@@ -42,9 +42,9 @@
           <mat-form-field appearance="outline">
             <mat-label>Selecione o tipo do Veículo</mat-label>
             <mat-select disableRipple formControlName="type">
-              <mat-option value="carro">Carro</mat-option>
-              <mat-option value="moto">Moto</mat-option>
-              <mat-option value="van">Van</mat-option>
+              <mat-option value="1">Carro</mat-option>
+              <mat-option value="0">Moto</mat-option>
+              <mat-option value="2">Van</mat-option>
             </mat-select>
             <mat-error [errorValidators]="returnControl('type')"> </mat-error>
           </mat-form-field>

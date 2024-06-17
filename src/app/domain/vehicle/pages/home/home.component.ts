@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { BaseResourceService } from '../../../../shared/services/base-resource.service';
 import { Vehicle } from '../../../../shared/interfaces/global-interfaces';
 import { LocalService } from '../../../../shared/services/local.service';
+import { mercosulPlateValidator } from '../../../../validators/customValidators';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +39,7 @@ export class HomeComponent {
   buildForm() {
     this.form = this.formBuilder.group({
       model: [null, Validators.required],
-      license_plate: [null, Validators.required],
+      license_plate: [null, [Validators.required]],
       capacity: [null, Validators.required],
       color: [null, Validators.required],
       type: [null, Validators.required],
@@ -48,7 +49,11 @@ export class HomeComponent {
   onSubmit() {
     const body = {
       driver_id: this.local.user.driver_id,
-      ...this.form.value,
+      model: this.form.value.model,
+      license_plate: this.form.value.license_plate,
+      capacity: this.form.value.capacity,
+      color: this.form.value.color,
+      type: +this.form.value.type,
     };
 
     this.serviceHttp

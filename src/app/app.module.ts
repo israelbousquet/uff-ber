@@ -15,9 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from './shared/shared.module';
 import { ContentComponent } from './layouts/content/content/content.component';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -34,11 +34,15 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatTooltipModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     provideAnimationsAsync(),
-    provideHotToastConfig(),
+    provideHotToastConfig({
+      stacking: 'depth',
+      visibleToasts: 1,
+    }),
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
   ],
   bootstrap: [AppComponent],

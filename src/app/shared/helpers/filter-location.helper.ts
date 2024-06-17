@@ -1,4 +1,4 @@
-import { Lift } from '../interfaces/global-interfaces';
+import { Lift, LiftDetail } from '../interfaces/global-interfaces';
 
 export function parseLocation(location: any): any {
   try {
@@ -34,6 +34,14 @@ export function filterLift(res: Lift) {
 
   res.lift!.start_location = convertToLatLng(res.lift!.start_location);
   res.lift!.end_location = convertToLatLng(res.lift!.end_location);
+}
+
+export function filterLiftDetail(res: LiftDetail) {
+  res.start_location = parseLocation(res.start_location);
+  res.end_location = parseLocation(res.end_location);
+
+  res.start_location = convertToLatLng(res.start_location);
+  res.end_location = convertToLatLng(res.end_location);
 }
 
 export function filteredWaypoint(res: Lift) {

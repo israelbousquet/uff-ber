@@ -13,6 +13,8 @@ import { ToastService } from '../../../shared/services/toast-service.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Lift, LiftDetail } from '../../../shared/interfaces/global-interfaces';
 import { convertToLatLng } from '../../../shared/helpers/filter-location.helper';
+import Swal from 'sweetalert2';
+import { SwalService } from '../../../shared/services/swal.service';
 
 @Component({
   selector: 'app-offer-dialog',
@@ -35,7 +37,8 @@ export class OfferDialogComponent {
     public localService: LocalService,
     public toast: ToastService,
     @Inject(MAT_DIALOG_DATA) private data: { liftDetail: LiftDetail },
-    private dialogRef: MatDialogRef<OfferDialogComponent>
+    private dialogRef: MatDialogRef<OfferDialogComponent>,
+    public swal: SwalService
   ) {}
 
   ngOnInit() {
@@ -83,14 +86,16 @@ export class OfferDialogComponent {
         next: (res) => {
           if (res) {
             this.dialogRef.close(true);
-            this.toast.showToastSucess(
-              'Pontos adicionados na carona com sucesso!'
+            this.swal.showMessage(
+              'Pontos adicionados na carona com sucesso!',
+              'success'
             );
           }
         },
         error: (err) => {
-          this.toast.showToastError(
-            'Ocorreu um erro ao tentar adicionar a carona atual.'
+          this.swal.showMessage(
+            'Ocorreu um erro ao tentar adicionar a carona atual.',
+            'error'
           );
           throw err;
         },
