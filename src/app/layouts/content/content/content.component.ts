@@ -80,9 +80,9 @@ export class ContentComponent implements OnInit {
       cancelButtonText: `Não`,
     }).then((result) => {
       if (result.isConfirmed) {
-        this.swal.showMessage('Deslogado com sucesso!', 'success');
         this.localService.remove('user');
         this.router.navigate(['/auth/login']);
+        this.swal.showMessage('Deslogado com sucesso!', 'success');
       }
     });
   }

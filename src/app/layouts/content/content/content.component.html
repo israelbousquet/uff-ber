@@ -2,6 +2,8 @@
   <div class="menu container">
     <div class="logo" [routerLink]="'/lifts'">
       <h1 [ngClass]="{ mobile: !isLargeScreen }">UFFBer</h1>
+      <mat-icon *ngIf="localService.userIsDriver">directions_car</mat-icon>
+      <mat-icon *ngIf="!localService.userIsDriver">person</mat-icon>
     </div>
     <div class="items-container showLeft">
       <ng-container *ngIf="isLargeScreen">

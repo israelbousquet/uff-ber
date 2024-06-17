@@ -38,11 +38,11 @@ export class LiftAtualComponent {
     this.serviceHttp.customAction('GET', this.endpoint, null).subscribe({
       next: (res: LiftDetail) => {
         if (res) {
-          console.log(res)
           filterLiftDetail(res);
           this.liftDetail = res;
-
-          console.log(this.liftDetail)
+          this.liftEmpty = false;
+        } else {
+          this.liftEmpty = true;
         }
       },
       error: (err) => {
@@ -61,8 +61,6 @@ export class LiftAtualComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.liftMethod({ verbo: 'finalizar', normal: 'finalizada' }, 'finish');
-      } else if (result.isDismissed) {
-        this.swal.showMessage('Operação cancelada', 'info');
       }
     });
   }
@@ -77,8 +75,6 @@ export class LiftAtualComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.liftMethod({ verbo: 'cancelar', normal: 'cancelada' }, 'cancel');
-      } else if (result.isDismissed) {
-        this.swal.showMessage('Operação cancelada', 'info');
       }
     });
   }
@@ -93,14 +89,12 @@ export class LiftAtualComponent {
             `Corrida ${messages.normal} com sucesso!`,
             'success'
           );
-          console.log(res);
         },
         error: (err) => {
           this.swal.showMessage(
             `Não foi possível ${messages.verbo} a corrida`,
             'error'
           );
-          console.log(err);
         },
       });
   }

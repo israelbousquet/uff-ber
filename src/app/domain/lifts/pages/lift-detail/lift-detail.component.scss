@@ -171,7 +171,7 @@
   .title-route-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
 
     .flag-container {
       display: flex;
@@ -182,14 +182,14 @@
       border-radius: 15px;
 
       p {
-        font-size: 13px;
-        color: var(--tertiary-color-dark);
+        font-size: 15px;
+        color: var(--tertiary-color-dark-3);
       }
 
       .flag {
-        height: 10px;
-        width: 10px;
-        border-radius: 20px;
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
         top: -5px;
         right: 20px;
       }

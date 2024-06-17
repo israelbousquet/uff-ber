@@ -30,20 +30,25 @@ export class OfferDialogComponent {
 
   waypoints: google.maps.DirectionsWaypoint[] = [];
 
+  driverEmpty: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     public serviceHttp: BaseResourceService<Array<any>>,
     public localService: LocalService,
     public toast: ToastService,
-    @Inject(MAT_DIALOG_DATA) private data: { liftDetail: LiftDetail },
+    @Inject(MAT_DIALOG_DATA) private data: { lift: Lift },
     private dialogRef: MatDialogRef<OfferDialogComponent>,
     public swal: SwalService
   ) {}
 
   ngOnInit() {
     this.buildForm();
-    this.filterWaypoints();
+    this.createWaypoints(this.data.lift)
+    if (this.liftDetail.driver_id == null) {
+      this.driverEmpty = true;
+    }
   }
 
   buildForm() {
@@ -53,23 +58,20 @@ export class OfferDialogComponent {
     });
   }
 
-  filterWaypoints() {
-    this.form.valueChanges.subscribe((value) => {
-      const origin = value.origin;
-      const destination = value.destination;
+  createWaypoints(res: Lift) {
+    res.waypoints.forEach((waypoint) => {
+      const pickupWaypoint = {
+        stopover: true,
+        location: waypoint.pickup_location.location,
+      };
 
-      if (this.isValid(origin) && this.isValid(destination)) {
-        this.waypoints = [
-          {
-            stopover: true,
-            location: origin.location,
-          },
-          {
-            stopover: true,
-            location: destination.location,
-          },
-        ];
-      }
+      const dropoffWaypoint = {
+        stopover: true,
+        location: waypoint.dropoff_location.location,
+      };
+
+      this.waypoints.push(pickupWaypoint);
+      this.waypoints.push(dropoffWaypoint);
     });
   }
 
@@ -78,28 +80,34 @@ export class OfferDialogComponent {
   }
 
   patchLift() {
-    this.serviceHttp
-      .customAction('PATCH', `lifts/${this.lift.id}`, {
-        lift: this.resourceLift,
-      })
-      .subscribe({
-        next: (res) => {
-          if (res) {
-            this.dialogRef.close(true);
+    Swal.fire({
+      icon: 'warning',
+      title: 'Deseja realmente participar da carona?',
+      showCancelButton: true,
+      confirmButtonText: 'Sim!',
+      cancelButtonText: `Não`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.serviceHttp
+        .customAction('PATCH', `lifts/${this.liftDetail.id}`, {
+          lift: this.resourceLift,
+        })
+        .subscribe({
+          next: (res) => {
+            if (res) {
+              this.dialogRef.close(true);
+            }
+          },
+          error: (err) => {
             this.swal.showMessage(
-              'Pontos adicionados na carona com sucesso!',
-              'success'
+              'Ocorreu um erro ao tentar adicionar a carona atual.',
+              'error'
             );
-          }
-        },
-        error: (err) => {
-          this.swal.showMessage(
-            'Ocorreu um erro ao tentar adicionar a carona atual.',
-            'error'
-          );
-          throw err;
-        },
-      });
+            throw err;
+          },
+        });
+      }
+    });
   }
 
   close() {
@@ -111,8 +119,8 @@ export class OfferDialogComponent {
     return this.form.get(campo) as FormControl;
   }
 
-  get lift() {
-    return this.data.liftDetail;
+  get liftDetail() {
+    return this.data?.lift?.lift!;
   }
 
   get filteredWaypoints(): Array<any> {

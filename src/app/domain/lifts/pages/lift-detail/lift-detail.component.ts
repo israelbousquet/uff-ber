@@ -109,7 +109,7 @@ export class LiftDetailComponent implements OnInit {
   addWaypoint() {
     const dialogRef = this.dialog.open(OfferDialogComponent, {
       data: {
-        liftDetail: this.lift.lift,
+        lift: this.lift,
       },
       width: '80vw',
       maxWidth: '95vw',
@@ -159,13 +159,14 @@ export class LiftDetailComponent implements OnInit {
   }
 
   get getPassengers(): string {
-    let texto = `${this.waypoints.length} passageiros`;
+    const passengers = this.lift.waypoints.length;
+    let texto = `${passengers} passageiros`;
 
-    if (this.waypoints.length == 1) {
+    if (passengers == 1) {
       texto = '1 passageiro';
     }
 
-    if (this.waypoints.length == 0) {
+    if (passengers == 0) {
       texto = 'Sem passageiros';
     }
 

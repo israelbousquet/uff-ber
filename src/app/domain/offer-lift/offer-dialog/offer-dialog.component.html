@@ -1,6 +1,7 @@
 <section>
   <div class="container showUp">
-    <h1>Insira seus pontos de parada</h1>
+    <h1 *ngIf="!localService.userIsDriver">Insira seus pontos de parada</h1>
+    <h1 *ngIf="localService.userIsDriver">Insira seus pontos de origem e destino</h1>
   </div>
 
   <div class="container-search showBottom">
@@ -30,11 +31,20 @@
     </div>
 
     <div class="maps">
-      <app-map-display
-        [from]="lift.start_location"
-        [to]="lift.end_location"
-        [waypointsInput]="waypoints"
-      ></app-map-display>
+      <ng-container *ngIf="!driverEmpty">
+        <app-map-display
+          [from]="liftDetail.start_location"
+          [to]="liftDetail.end_location"
+          [waypointsInput]="waypoints"
+        ></app-map-display>
+      </ng-container>
+      <ng-container *ngIf="driverEmpty">
+        <app-map-display
+          [from]="form.value.origin"
+          [to]="form.value.destination"
+          [waypointsInput]="waypoints"
+        ></app-map-display>
+      </ng-container>
     </div>
   </div>
 
