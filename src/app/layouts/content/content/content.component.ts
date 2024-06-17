@@ -83,8 +83,6 @@ export class ContentComponent implements OnInit {
         this.swal.showMessage('Deslogado com sucesso!', 'success');
         this.localService.remove('user');
         this.router.navigate(['/auth/login']);
-      } else if (result.isDismissed) {
-        this.swal.showMessage('Operação cancelada', 'error');
       }
     });
   }

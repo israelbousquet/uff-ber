@@ -167,4 +167,32 @@
       }
     }
   }
+
+  .title-route-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .flag-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--tertiary-color-dark);
+      padding: 3px 6px;
+      border-radius: 15px;
+
+      p {
+        font-size: 13px;
+        color: var(--tertiary-color-dark);
+      }
+
+      .flag {
+        height: 10px;
+        width: 10px;
+        border-radius: 20px;
+        top: -5px;
+        right: 20px;
+      }
+    }
+  }
 }

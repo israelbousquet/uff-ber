@@ -1,71 +1,79 @@
 <section class="container content">
-  <div class="title-route">
+  <div class="title-route showUp" >
     <mat-icon
       matTooltip="Voltar"
       [matTooltipPosition]="'above'"
       (click)="navigate('/lifts')"
       >arrow_back</mat-icon
     >
-    <h1 class="showUp">Carona atual</h1>
+    <h1>Carona atual</h1>
   </div>
 
-  <div class="maps-location-container">
-    <ng-container>
-      <div class="locations showBottom">
-        <div class="local-container">
-          <div class="pin">
-            <p>Origem</p>
-            <mat-icon>location_on</mat-icon>
+  <ng-container *ngIf="!liftEmpty">
+    <div class="maps-location-container">
+      <ng-container>
+        <div class="locations showBottom">
+          <div class="local-container">
+            <div class="pin">
+              <p>Origem</p>
+              <mat-icon>location_on</mat-icon>
+            </div>
+  
+            <div class="local">{{ liftDetail?.start_location?.name }}</div>
           </div>
-
-          <div class="local">{{ liftDetail?.start_location?.name }}</div>
-        </div>
-
-        <div class="direction">
-          <button>
-            <mat-icon>arrow_downward</mat-icon>
-          </button>
-        </div>
-
-        <div class="local-container">
-          <div class="pin">
-            <p>Destino</p>
-            <mat-icon>location_on</mat-icon>
+  
+          <div class="direction">
+            <button>
+              <mat-icon>arrow_downward</mat-icon>
+            </button>
           </div>
-
-          <div class="local">{{ liftDetail?.end_location?.name }}</div>
+  
+          <div class="local-container">
+            <div class="pin">
+              <p>Destino</p>
+              <mat-icon>location_on</mat-icon>
+            </div>
+  
+            <div class="local">{{ liftDetail?.end_location?.name }}</div>
+          </div>
         </div>
-      </div>
-    </ng-container>
-
-    <div class="maps showUp" *ngIf="liftDetail">
-      <app-map-display
-        [from]="liftDetail.start_location"
-        [to]="liftDetail.end_location"
-        [waypointsInput]="waypoints"
-        (routeChange)="routeChange($event)"
-      ></app-map-display>
-    </div>
-  </div>
-
-  <div class="adicionar-pontos" *ngIf="durationLift.length > 0">
-    <button
-      class="primary-button red showLeft item"
-      *ngIf="localService.userIsDriver"
-      (click)="endLift()"
-    >
-      Finalizar corrida
-    </button>
-
-    <button class="primary-button warning showLeft item" (click)="cancelLift()">
-      Cancelar corrida
-    </button>
-
-    <div class="details-container showLeft item">
-      <div class="detail" *ngIf="durationLift.length > 0">
-        <mat-icon inline="true">timer</mat-icon>
-        <p>{{ durationLift }}</p>
+      </ng-container>
+  
+      <div class="maps showUp" *ngIf="liftDetail">
+        <app-map-display
+          [from]="liftDetail.start_location"
+          [to]="liftDetail.end_location"
+          [waypointsInput]="waypoints"
+          (routeChange)="routeChange($event)"
+        ></app-map-display>
       </div>
     </div>
-  </div>
+  
+    <div class="adicionar-pontos" *ngIf="durationLift.length > 0">
+      <button
+        class="primary-button red showLeft item"
+        *ngIf="localService.userIsDriver"
+        (click)="endLift()"
+      >
+        Finalizar corrida
+      </button>
+  
+      <button class="primary-button warning showLeft item" (click)="cancelLift()">
+        Cancelar corrida
+      </button>
+  
+      <div class="details-container showLeft item">
+        <div class="detail" *ngIf="durationLift.length > 0">
+          <mat-icon inline="true">timer</mat-icon>
+          <p>{{ durationLift }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="liftEmpty">
+    <div class="liftEmpty showBottom">
+      <h2>No momento você não está em nenhuma carona.</h2>
+    </div>
+  </ng-container>
 </section>

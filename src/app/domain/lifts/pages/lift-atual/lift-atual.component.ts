@@ -19,6 +19,8 @@ export class LiftAtualComponent {
   waypoints: google.maps.DirectionsWaypoint[] = [];
   durationLift: string = '';
 
+  liftEmpty: boolean = false;
+
   constructor(
     private router: Router,
     private serviceHttp: BaseResourceService<LiftDetail>,
@@ -36,8 +38,11 @@ export class LiftAtualComponent {
     this.serviceHttp.customAction('GET', this.endpoint, null).subscribe({
       next: (res: LiftDetail) => {
         if (res) {
+          console.log(res)
           filterLiftDetail(res);
           this.liftDetail = res;
+
+          console.log(this.liftDetail)
         }
       },
       error: (err) => {
@@ -80,9 +85,10 @@ export class LiftAtualComponent {
 
   liftMethod(messages: { verbo: string; normal: string }, path: string) {
     this.serviceHttp
-      .customAction('POST', `/lifts/${this.liftDetail.id}/${path}`, null)
+      .customAction('POST', `lifts/${this.liftDetail.id}/${path}`, null)
       .subscribe({
         next: (res) => {
+          this.router.navigate(['lifts/history'])
           this.swal.showMessage(
             `Corrida ${messages.normal} com sucesso!`,
             'success'

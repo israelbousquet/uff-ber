@@ -26,6 +26,8 @@ export class LiftDetailComponent implements OnInit {
   waypoints: google.maps.DirectionsWaypoint[] = [];
   durationLift: string = '';
 
+  isHistory: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -56,6 +58,10 @@ export class LiftDetailComponent implements OnInit {
           this.lift = res;
           this.createWaypoints(res);
           this.verifyLiftSemMotorista(res);
+
+          if (this.lift.lift.status !== 'active') {
+            this.isHistory = true;
+          }
         }
       },
       error: (err) => {
@@ -135,6 +141,14 @@ export class LiftDetailComponent implements OnInit {
     });
   }
 
+  goBack() {
+    if (this.isHistory) {
+      this.router.navigate(['lifts/history']);
+    } else {
+      this.router.navigate(['/lifts'])
+    }
+  }
+
   // gets
   get liftDetail(): LiftDetail {
     if (this.lift?.lift?.driver_id) {
@@ -156,5 +170,27 @@ export class LiftDetailComponent implements OnInit {
     }
 
     return texto;
+  }
+
+  get colorStatus(): string {
+    const colors: { [key: string]: string } = {
+      active: 'rgb(6, 223, 6)',
+      pending: 'rgb(249 193 1)',
+      cancelled: 'rgb(217 24 24)',
+      ended: 'var(--blue-primary-color)',
+    };
+
+    return colors[this.lift?.lift?.status!] || 'rgb(217 24 24)';
+  }
+
+  get getStatus(): string {
+    const situacoes: { [key: string]: string } = {
+      active: 'Em andamento',
+      pending: 'Sem motorista',
+      ended: 'Finalizada',
+      cancelled: 'Cancelada',
+    };
+
+    return situacoes[this.lift?.lift?.status!];
   }
 }

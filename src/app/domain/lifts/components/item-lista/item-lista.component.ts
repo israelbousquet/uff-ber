@@ -17,9 +17,7 @@ export class ItemListaComponent {
   constructor(private router: Router) {}
 
   goLift() {
-    if (!this.isHistory) {
-      this.router.navigate(['/lifts', this.lift.id]);
-    }
+    this.router.navigate(['/lifts', this.lift.id]);
   }
 
   get colorStatus(): string {
