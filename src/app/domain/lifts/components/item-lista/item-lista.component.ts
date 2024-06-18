@@ -23,6 +23,17 @@ export class ItemListaComponent implements OnInit {
     this.router.navigate(['/lifts', this.lift.id]);
   }
 
+  // getters
+  
+  get arrayWaypoints(): any[] {
+    const ways: any[] = []
+    this.lift.waypoints.map(item => {
+      ways.push(item.dropoff_location.name);
+      ways.push(item.pickup_location.name);
+    })
+    return ways;
+  }
+
   get colorStatus(): string {
     const colors: { [key: string]: string } = {
       active: 'rgb(6, 223, 6)',

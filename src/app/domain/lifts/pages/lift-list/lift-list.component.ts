@@ -6,7 +6,7 @@ import {
   Lift,
   LiftDetail,
 } from '../../../../shared/interfaces/global-interfaces';
-import { parseLocation } from '../../../../shared/helpers/filter-location.helper';
+import { filteredWaypoint, filteredWaypointArray, parseLocation } from '../../../../shared/helpers/filter-location.helper';
 import { ToastService } from '../../../../shared/services/toast-service.service';
 import { Router } from '@angular/router';
 
@@ -33,6 +33,10 @@ export class LiftListComponent implements OnInit {
             res.start_location = parseLocation(res.start_location);
             res.end_location = parseLocation(res.end_location);
           });
+
+          if (this.localService.userIsDriver) {
+            filteredWaypointArray(res);
+          }
 
           this.lifts = res;
           this.lifts.sort(

@@ -1,47 +1,4 @@
 <div class="card showBottom" (click)="goLift()">
-  <!-- <div class="route-item">
-    <p class="route">Origem: </p>
-    <p>{{ raceData.race?.route?.origin }}</p>
-  </div>
-  <div class="divider"></div>
-  <div class="route-item">
-    <p class="route">Destino: </p>
-    <p>{{ raceData.race?.route?.origin }}</p>
-  </div> -->
-  <!-- <div class="perfil">
-    <div class="img-perfil" [matMenuTriggerFor]="menuDriver">
-      <img src="../../../../../assets/imgs/perfil-empty.png">
-    </div>
-    <div class="detail">
-      <p>{{ raceData.driver.name }}</p>
-      <div class="avaliation">
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-        <mat-icon>star</mat-icon>
-      </div>
-    </div>
-  </div>
-  <div class="divider"></div> -->
-
-  <!-- <div class="passengers">
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Passageiros da Viagem
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <div class="passenger-list">
-          <div class="passenger" *ngFor="let passenger of raceData.race.passengers">
-            {{ passenger.name }}
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div> -->
-
   <div class="status-container">
     <div class="flag-container">
       <div class="flag" [style.background-color]="colorStatus"></div>
@@ -52,25 +9,35 @@
     </div>
   </div>
 
-  <div class="locations">
-    <div class="local-container">
-      <p>Origem</p>
-      <h2>{{ lift?.start_location?.name }}</h2>
+  <ng-container *ngIf="lift?.driver_id">
+    <div class="locations">
+      <div class="local-container">
+        <p>Origem</p>
+        <h2>{{ lift?.start_location?.name }}</h2>
 
-      <div class="pin">
-        <mat-icon inline="true">location_on</mat-icon>
+        <div class="pin">
+          <mat-icon inline="true">location_on</mat-icon>
+        </div>
+      </div>
+
+      <div class="local-container">
+        <p>Destino</p>
+        <h2>{{ lift?.end_location?.name }}</h2>
+
+        <div class="pin">
+          <mat-icon inline="true">location_on</mat-icon>
+        </div>
       </div>
     </div>
+  </ng-container>
 
-    <div class="local-container">
-      <p>Destino</p>
-      <h2>{{ lift?.end_location?.name }}</h2>
-
-      <div class="pin">
-        <mat-icon inline="true">location_on</mat-icon>
+  <ng-container *ngIf="!lift?.driver_id">
+    <div class="locations-waypoints">
+      <div class="item" *ngFor="let way of arrayWaypoints">
+        {{ way }}
       </div>
     </div>
-  </div>
+  </ng-container>
 
   <div class="divider light"></div>
 

@@ -29,6 +29,7 @@ export interface LiftDetail {
   end_location: Location;
   created_at: Date;
   updated_at: Date;
+  waypoints: WayPoint[]
 }
 
 export interface WayPoint {

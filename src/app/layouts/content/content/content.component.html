@@ -22,11 +22,11 @@
           <mat-icon>menu</mat-icon>
         </button>
       </ng-container>
-      <div class="perfil">
+      <div class="perfil" [matMenuTriggerFor]="menuUser">
         <div class="img-perfil">
           <img src="../assets/imgs/perfil-empty.png" />
         </div>
-        <div class="detail" [matMenuTriggerFor]="menuUser">
+        <div class="detail">
           <mat-icon>expand_more</mat-icon>
         </div>
       </div>

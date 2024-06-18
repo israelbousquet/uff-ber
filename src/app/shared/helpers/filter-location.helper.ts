@@ -55,3 +55,15 @@ export function filteredWaypoint(res: Lift) {
     });
   }
 }
+
+export function filteredWaypointArray(res: LiftDetail[]) {
+  res.map((item) => {
+    item.waypoints.map(way => {
+      way.dropoff_location = parseLocation(way.dropoff_location);
+      way.pickup_location = parseLocation(way.pickup_location);
+  
+      way.dropoff_location = convertToLatLng(way.dropoff_location);
+      way.pickup_location = convertToLatLng(way.pickup_location);
+    })
+  });
+}

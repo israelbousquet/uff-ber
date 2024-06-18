@@ -110,19 +110,23 @@ export class LiftDetailComponent implements OnInit {
   }
 
   addWaypoint() {
-    const url = `/passengers/${this.localService.user.passenger_id}/actual_lift`;
-
-    this.serviceHttp.customAction('GET', url, null).subscribe({
-      next: (res: any) => {
-        if (res) {
-          if (res.id == this.liftDetail.id) {
-            this.swal.showMessage('Você já está nesta carona', 'warning');
-          } else {
-            this.dialogOpen();
+    if (this.localService.userIsDriver) {
+      this.dialogOpen();
+    } else {
+      const url = `/passengers/${this.localService.user.passenger_id}/actual_lift`;
+  
+      this.serviceHttp.customAction('GET', url, null).subscribe({
+        next: (res: any) => {
+          if (res) {
+            if (res.id == this.liftDetail.id) {
+              this.swal.showMessage('Você já está nesta carona', 'warning');
+            } else {
+              this.dialogOpen();
+            }
           }
         }
-      }
-    })
+      })
+    }
   }
 
   dialogOpen() {
