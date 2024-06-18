@@ -12,7 +12,7 @@
 
     <div class="create-lift">
       <button class="primary-button" (click)="offerLift()">
-        Oferecer carona
+        {{ localService.userIsDriver ? "Oferecer carona" : "Solicitar carona" }}
       </button>
     </div>
   </div>
