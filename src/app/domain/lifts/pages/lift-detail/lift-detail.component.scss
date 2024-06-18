@@ -176,7 +176,7 @@
     .flag-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       border: 1px solid var(--tertiary-color-dark);
       padding: 3px 6px;
       border-radius: 15px;
@@ -187,8 +187,8 @@
       }
 
       .flag {
-        height: 15px;
-        width: 15px;
+        height: 12px;
+        width: 12px;
         border-radius: 50%;
         top: -5px;
         right: 20px;

@@ -33,5 +33,4 @@ export class LocalService {
     if (user.driver_id) return true;
     else return false;
   }
-
 }

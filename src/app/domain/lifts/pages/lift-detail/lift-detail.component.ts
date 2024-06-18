@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { OfferDialogComponent } from '../../../offer-lift/offer-dialog/offer-dialog.component';
 import { formatDuration } from '../../../../shared/helpers/format.helper';
 import { LocalService } from '../../../../shared/services/local.service';
+import { SwalService } from '../../../../shared/services/swal.service';
 
 @Component({
   selector: 'app-lift-detail',
@@ -33,7 +34,8 @@ export class LiftDetailComponent implements OnInit {
     private router: Router,
     private serviceHttp: BaseResourceService<Lift>,
     private dialog: MatDialog,
-    public localService: LocalService
+    public localService: LocalService,
+    public swal: SwalService
   ) {}
 
   ngOnInit(): void {
@@ -59,7 +61,8 @@ export class LiftDetailComponent implements OnInit {
           this.createWaypoints(res);
           this.verifyLiftSemMotorista(res);
 
-          if (this.lift.lift.status !== 'active') {
+          const status = this.lift.lift.status;
+          if (!['active', 'pending'].includes(status)) {
             this.isHistory = true;
           }
         }
@@ -107,6 +110,22 @@ export class LiftDetailComponent implements OnInit {
   }
 
   addWaypoint() {
+    const url = `/passengers/${this.localService.user.passenger_id}/actual_lift`;
+
+    this.serviceHttp.customAction('GET', url, null).subscribe({
+      next: (res: any) => {
+        if (res) {
+          if (res.id == this.liftDetail.id) {
+            this.swal.showMessage('Você já está nesta carona', 'warning');
+          } else {
+            this.dialogOpen();
+          }
+        }
+      }
+    })
+  }
+
+  dialogOpen() {
     const dialogRef = this.dialog.open(OfferDialogComponent, {
       data: {
         lift: this.lift,
@@ -121,7 +140,6 @@ export class LiftDetailComponent implements OnInit {
       }
     });
   }
-
   // filtros
 
   createWaypoints(res: Lift) {

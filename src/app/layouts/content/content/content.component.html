@@ -8,7 +8,10 @@
     <div class="items-container showLeft">
       <ng-container *ngIf="isLargeScreen">
         <div class="items" *ngFor="let link of links">
-          <div class="item" [routerLink]="link.routerLink">
+          <div class="item" 
+          [routerLink]="link.routerLink" routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >
             <mat-icon>{{ link.icon }}</mat-icon>
             <span *ngIf="link.name">{{ link.name }}</span>
           </div>

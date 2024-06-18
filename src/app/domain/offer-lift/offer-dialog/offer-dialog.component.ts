@@ -93,9 +93,13 @@ export class OfferDialogComponent {
           lift: this.resourceLift,
         })
         .subscribe({
-          next: (res) => {
+          next: (res: any) => {
             if (res) {
-              this.dialogRef.close(true);
+              if (res.error) {
+                 this.swal.showMessageTitle('Atenção', 'Você já se encontra em uma outra carona. Cancele ou Finalize sua carona atual para poder prosseguir', 'warning')
+              } else {
+                this.dialogRef.close(true);
+              }
             }
           },
           error: (err) => {

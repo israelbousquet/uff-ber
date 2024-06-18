@@ -55,8 +55,8 @@
           gap: 5px;
           cursor: pointer;
           padding: 8px 12px;
-          border-radius: 10px;
-          transition: background-color .2s ease-in-out;
+          border-radius: 28px;
+          transition: all .2s ease-in-out;
 
           &:hover {
             background-color: var(--bg-color-dark);
@@ -72,6 +72,14 @@
           span {
             color: var(--blue-primary-color-dark);
             font-size: .9rem;
+          }
+
+          &.active-link {
+            background-color: var(--blue-primary-color);
+
+            span, mat-icon {
+              color: var(--primary-color);
+            }
           }
         }
 

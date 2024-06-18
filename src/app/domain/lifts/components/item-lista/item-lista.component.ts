@@ -4,17 +4,20 @@ import {
   Lift,
   LiftDetail,
 } from '../../../../shared/interfaces/global-interfaces';
+import { LocalService } from '../../../../shared/services/local.service';
 
 @Component({
   selector: 'app-item-lista',
   templateUrl: './item-lista.component.html',
   styleUrl: './item-lista.component.scss',
 })
-export class ItemListaComponent {
+export class ItemListaComponent implements OnInit {
   @Input() lift!: LiftDetail;
   @Input() isHistory: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public local: LocalService) {}
+
+  ngOnInit(): void {}
 
   goLift() {
     this.router.navigate(['/lifts', this.lift.id]);
