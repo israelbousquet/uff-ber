@@ -7,10 +7,13 @@
 
     <div class="perfil-content-list">
       <div class="perfil-item">
-        <p><b>Nome:</b> {{ perfil?.nome }}</p>
+        <p><b>Nome:</b> {{ perfil?.user?.name }}</p>
       </div>
       <div class="perfil-item">
-        <p><b>IdUFF:</b> {{ perfil?.iduff }}</p>
+        <p><b>IdUFF:</b> {{ perfil?.user?.iduff }}</p>
+      </div>
+      <div class="perfil-item" *ngIf="local.userIsDriver">
+        <p><b>CNH:</b> {{ perfil?.driver?.cnh }}</p>
       </div>
       <div class="perfil-item avaliation">
         <p><b>Avaliação geral:</b></p>
@@ -21,6 +24,13 @@
             <mat-icon>star</mat-icon>
             <mat-icon>star</mat-icon>
           </div>
+        </div>
+      </div>
+
+      <div class="other-data">
+        <div class="item">
+          <p>Colaborador desde:</p>
+          <p>{{ perfil?.user?.created_at | date : "dd/MM/yyyy" }}</p>
         </div>
       </div>
     </div>

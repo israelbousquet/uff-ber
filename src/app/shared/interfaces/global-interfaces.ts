@@ -54,6 +54,26 @@ export interface Vehicle {
   color: string;
   license_plate: string;
   capacity: number;
-  type: string;
+  kind: string;
 }
-// 14000000000
+
+export interface UserDetail {
+  user: UserDetailUser,
+  driver: DriverDetailUser
+} 
+
+interface UserDetailUser {
+  created_at: Date,
+  updated_at: Date,
+  id: number,
+  name: string,
+  iduff: string,
+  rating: 5,
+}
+
+interface DriverDetailUser {
+  created_at: Date,
+  updated_at: Date,
+  cnh: string,
+  id: number,
+}

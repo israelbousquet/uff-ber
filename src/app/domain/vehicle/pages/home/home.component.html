@@ -3,7 +3,9 @@
     <div class="account">
       <div class="title-container showBottom">
         <mat-icon>directions_car</mat-icon>
-        <h1 class="login-title">Faça o cadastro do veículo.</h1>
+        <h1 class="login-title">
+          {{ isUpdate ? "Dados do veículo" : "Faça o cadastro do veículo." }}
+        </h1>
       </div>
 
       <form [formGroup]="form" class="showUp">
@@ -41,12 +43,12 @@
         <div class="input-box">
           <mat-form-field appearance="outline">
             <mat-label>Selecione o tipo do Veículo</mat-label>
-            <mat-select disableRipple formControlName="type">
-              <mat-option value="1">Carro</mat-option>
-              <mat-option value="0">Moto</mat-option>
-              <mat-option value="2">Van</mat-option>
+            <mat-select disableRipple formControlName="kind">
+              <mat-option value="car">Carro</mat-option>
+              <mat-option value="motorcycle">Moto</mat-option>
+              <mat-option value="van">Van</mat-option>
             </mat-select>
-            <mat-error [errorValidators]="returnControl('type')"> </mat-error>
+            <mat-error [errorValidators]="returnControl('kind')"> </mat-error>
           </mat-form-field>
         </div>
         <div class="input-box">
@@ -61,14 +63,22 @@
           </mat-form-field>
         </div>
 
-        <div class="actions-form">
+        <div class="actions-form full-width">
           <button
-            class="primary-button full-width"
+            class="primary-button"
             type="submit"
             [disabled]="!form.valid"
             (click)="onSubmit()"
           >
-            Cadastrar
+            {{ isUpdate ? "Atualizar" : "Cadastrar" }}
+          </button>
+          <button
+            class="primary-button red"
+            type="text"
+            (click)="delete()"
+            *ngIf="isUpdate"
+          >
+            Deletar
           </button>
         </div>
       </form>
