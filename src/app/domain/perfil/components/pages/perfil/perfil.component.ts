@@ -21,7 +21,6 @@ export class PerfilComponent implements OnInit {
       next: (res: UserDetail) => {
         if (res) {
           this.perfil = res;
-          console.log(res)
         }
       },
       error: err => {}

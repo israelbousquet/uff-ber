@@ -102,37 +102,37 @@ export class HomeComponent {
     });
   }
 
-  delete() {
-    Swal.fire({
-      icon: 'warning',
-      title: 'Deseja realmente deletar o veículo?',
-      showCancelButton: true,
-      confirmButtonText: 'Sim!',
-      cancelButtonText: `Não`,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.serviceHttp
-          .customAction('DELETE', `vehicles/${this.veiculo.id}`, null)
-          .subscribe({
-            next: (res) => {
-              if (res) {
-                this.swal.showMessage(
-                  'Veículo alterado com sucesso',
-                  'success'
-                );
-                this.getVehicle();
-              }
-            },
-            error: (err) => {
-              this.swal.showMessage(
-                'Não foi possível deletar o registro',
-                'error'
-              );
-            },
-          });
-      }
-    });
-  }
+  // delete() {
+  //   Swal.fire({
+  //     icon: 'warning',
+  //     title: 'Deseja realmente deletar o veículo?',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Sim!',
+  //     cancelButtonText: `Não`,
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.serviceHttp
+  //         .customAction('DELETE', `vehicles/${this.veiculo.id}`, null)
+  //         .subscribe({
+  //           next: (res) => {
+  //             if (res) {
+  //               this.swal.showMessage(
+  //                 'Veículo alterado com sucesso',
+  //                 'success'
+  //               );
+  //               this.getVehicle();
+  //             }
+  //           },
+  //           error: (err) => {
+  //             this.swal.showMessage(
+  //               'Não foi possível deletar o registro',
+  //               'error'
+  //             );
+  //           },
+  //         });
+  //     }
+  //   });
+  // }
 
   // getters
 
